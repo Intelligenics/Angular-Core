@@ -1,0 +1,116 @@
+//////////////////////////////////////////////////////////////////////////
+///
+/// Intelligenics Angular Application Framework
+/// Copyright(C) 2019 Matthew Parton M.Sc
+///
+/// This program is free software: you can redistribute it and / or modify
+/// it under the terms of the GNU General Public License as published by
+/// the Free Software Foundation, either version 3 of the License, or
+/// (at your option) any later version.
+///
+/// This program is distributed in the hope that it will be useful,
+/// but WITHOUT ANY WARRANTY; without even the implied warranty of
+/// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+/// GNU General Public License for more details.
+///
+/// You should have received a copy of the GNU General Public License
+/// along with this program. If not, see < https://www.gnu.org/licenses/>.
+///
+/// Contact information
+///
+/// Name: Matthew Parton M.Sc
+///
+/// LinkedIn Profile: https://www.linkedin.com/in/intelligenics/
+/// Website: http://www.intelligenics.co.uk
+/// Email: matthewparton@intelligenics.co.uk
+///
+//////////////////////////////////////////////////////////////////////////
+
+$dialog-background: var(--int-app-dialog-background, lighten(black,90%)); 
+$dialog-border-radius: var(--int-app-dialog-border-radius, 0.3rem); 
+$dialog-title-background: var(--int-app-dialog-title-background, navy); 
+$dialog-title-color: var(--int-app-dialog-title-color, white); 
+$dialog-shadow : var(--int-app-dialog-shadow,  0.1rem 0.1rem 0.1rem 0.1rem lighten(black,30%));
+$dialog-backdrop-background: var(--int-app-dialog-backdrop-background, black); 
+
+int-app-dialog,
+:host
+{
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  padding-top: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.int-app-dialog
+{ 
+  &__window
+  {
+    position: static;
+    pointer-events: auto;
+    z-index: 1000;
+    background-color: $dialog-background;
+    border-radius: $dialog-border-radius;
+    max-width: 80vw;
+    box-shadow: $dialog-shadow;
+    user-select: none;
+    margin: 1rem;
+    overflow: hidden;
+  }
+
+  &-title
+  {
+    padding: .1rem 1rem;
+    position: relative;
+    color: white;
+    background-color: $dialog-title-background;
+
+    .icon
+    {
+      position: absolute;
+      right: 1rem;
+    }
+
+    &__text
+    {
+      margin-bottom: 0 !important;
+    }
+
+    &__buttons
+    {
+      text-align: right;
+    }
+
+    &__button.btn-link
+    {
+      color: $dialog-title-color;
+    }
+  }
+
+  &__content
+  {
+    padding: 1rem;
+    position: relative;
+    width: auto;
+    height: auto;
+  }
+
+  &__backdrop
+  {
+    top: 0;
+    left: 0;
+    z-index: 0;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    background-color: $dialog-backdrop-background;
+    opacity: 0.4;
+  }
+}

@@ -1,0 +1,13 @@
+{
+	"folders": [
+		{
+			"path": "Intelligenics.Application.Framework"
+		},
+		{
+			"path": "Intelligenics.Application.Styles"
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}

@@ -1,0 +1,10 @@
+{
+  "name": "@intelligenics/application-styles",
+  "version": "2.0.4",
+  "peerDependencies": {
+    "@fortawesome/fontawesome-free": "^5.11.2",
+    "@angular/common": "^8.2.12",
+    "@angular/core": "^8.2.12",
+    "bootstrap": "^4.3.1"
+  }
+}

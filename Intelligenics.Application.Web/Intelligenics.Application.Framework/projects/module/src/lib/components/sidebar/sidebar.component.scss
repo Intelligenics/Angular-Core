@@ -1,0 +1,65 @@
+
+$sidebar-background: var(--int-app-sidebar-background, lighten(black,90%)); 
+$sidebar-shadow : var(--int-app-sidebar-shadow);
+
+.int-app-leftsidebar
+{
+  &__sidebar
+  {
+    z-index: 800;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    background-color: $sidebar-background;
+    box-shadow: $sidebar-shadow;
+    width: 20%;
+  }
+}
+
+.int-app-topsidebar
+{
+  &__sidebar
+  {
+    z-index: 800;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    right: 0;
+    left: 0;
+    background-color: $sidebar-background;
+    box-shadow: $sidebar-shadow;
+    height: 20%;
+  }
+}
+
+.int-app-rightsidebar
+{
+  &__sidebar
+  {
+    z-index: 800;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-color: $sidebar-background;
+    width: 20%;
+  }
+}
+
+.int-app-bottomsidebar
+{
+  &__sidebar
+  {
+    z-index: 800;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background-color: $sidebar-background;
+    height: 20%;
+  }
+}

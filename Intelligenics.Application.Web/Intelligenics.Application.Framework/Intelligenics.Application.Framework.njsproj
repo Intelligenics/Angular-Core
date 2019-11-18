@@ -1,0 +1,163 @@
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="4.0">
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">14.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+    <Name>Intelligenics.Application.Framework</Name>
+    <RootNamespace>NodejsConsoleApp1</RootNamespace>
+    <SaveNodeJsSettingsInProjectFile>True</SaveNodeJsSettingsInProjectFile>
+  </PropertyGroup>
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{04960b92-9df4-4aa5-990a-779a76da2d49}</ProjectGuid>
+    <ProjectHome>
+    </ProjectHome>
+    <StartupFile>
+    </StartupFile>
+    <StartWebBrowser>False</StartWebBrowser>
+    <SearchPath>
+    </SearchPath>
+    <WorkingDirectory>.</WorkingDirectory>
+    <OutputPath>.</OutputPath>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <ProjectTypeGuids>{3AF33F2E-1136-4D97-BBB7-1795711AC8B8};{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}</ProjectTypeGuids>
+    <EnableTypeScript>true</EnableTypeScript>
+    <StartWebBrowser>False</StartWebBrowser>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)' == 'Release' ">
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="package.json" />
+    <Content Include="projects\module\README.md" />
+    <Content Include="projects\module\src\lib\components\progress\progress.component.scss" />
+    <Content Include="projects\module\src\lib\components\progress\progress.component.html" />
+    <Content Include="projects\module\src\lib\components\about\about.component.html" />
+    <Content Include="projects\module\src\lib\components\about\about.component.scss" />
+    <Content Include="projects\module\src\lib\components\alert\alert.component.html" />
+    <Content Include="projects\module\src\lib\components\alert\alert.component.scss" />
+    <Content Include="projects\module\src\lib\components\dialog\dialog.component.html" />
+    <Content Include="projects\module\src\lib\components\dialog\dialog.component.scss" />
+    <Content Include="projects\module\src\lib\components\framework\framework.component.html" />
+    <Content Include="projects\module\src\lib\components\framework\framework.component.scss" />
+    <Content Include="projects\module\src\lib\components\sidebar\sidebar.component.scss" />
+    <Content Include="projects\module\src\lib\components\snackbar\snackbar.component.html" />
+    <Content Include="projects\module\src\lib\components\snackbar\snackbar.component.scss" />
+    <Content Include="projects\test-harness\src\app\components\app.component.scss" />
+    <Content Include="projects\test-harness\src\app\components\navigation.component.html" />
+    <Content Include="projects\test-harness\src\app\components\navigation.component.scss" />
+    <Content Include="projects\test-harness\src\app\components\content.component.html" />
+    <Content Include="projects\test-harness\src\app\components\content.component.scss" />
+    <Content Include="projects\test-harness\src\app\components\test.component.html" />
+    <Content Include="projects\test-harness\src\app\components\test.component.scss" />
+    <Content Include="projects\test-harness\src\assets\settings.json">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="projects\" />
+    <Folder Include="projects\module\" />
+    <Folder Include="projects\module\src\" />
+    <Folder Include="projects\module\src\lib\" />
+    <Folder Include="projects\module\src\lib\animations\" />
+    <Folder Include="projects\module\src\lib\components\" />
+    <Folder Include="projects\module\src\lib\components\about\" />
+    <Folder Include="projects\module\src\lib\components\alert\" />
+    <Folder Include="projects\module\src\lib\components\dialog\" />
+    <Folder Include="projects\module\src\lib\components\framework\" />
+    <Folder Include="projects\module\src\lib\components\progress\" />
+    <Folder Include="projects\module\src\lib\components\sidebar\" />
+    <Folder Include="projects\module\src\lib\components\snackbar\" />
+    <Folder Include="projects\module\src\lib\guards\" />
+    <Folder Include="projects\module\src\lib\models\" />
+    <Folder Include="projects\module\src\lib\resolver\" />
+    <Folder Include="projects\module\src\lib\services\" />
+    <Folder Include="projects\test-harness\" />
+    <Folder Include="projects\test-harness\src\" />
+    <Folder Include="projects\test-harness\src\app\" />
+    <Folder Include="projects\test-harness\src\app\components\" />
+    <Folder Include="projects\test-harness\src\assets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="projects\module\src\lib\components\progress\progress.component.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\framework.routing.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\guards\authentication.guard.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\models\authentication.model.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\models\codes.model.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\models\error.model.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\resolver\settings.resolver.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\services\authentication.interceptor.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\services\application.service.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\services\authentication.service.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\services\error.interceptor.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\services\error.service.ts" />
+    <TypeScriptCompile Include="projects\module\src\public-api.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\animations\dialog.animation.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\animations\fadeIn.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\animations\sidebar.animation.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\animations\slide-in.animation.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\components\about\about.component.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\components\alert\alert.component.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\components\dialog\dialog.component.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\components\framework\framework.component.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\components\sidebar\sidebar.component.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\components\snackbar\snackbar.component.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\models\framework.constants.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\framework.module.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\services\dialog.service.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\services\loading.interceptor.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\services\loading.service.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\services\sidebar.service.ts" />
+    <TypeScriptCompile Include="projects\module\src\lib\services\snackbar.service.ts" />
+    <TypeScriptCompile Include="projects\test-harness\src\app\components\app.component.ts" />
+    <TypeScriptCompile Include="projects\test-harness\src\app\components\navigation.component.ts" />
+    <TypeScriptCompile Include="projects\test-harness\src\app\components\content.component.ts" />
+    <TypeScriptCompile Include="projects\test-harness\src\app\components\test.component.ts" />
+    <TypeScriptCompile Include="projects\test-harness\src\app\test-harness.module.ts" />
+    <TypeScriptCompile Include="projects\test-harness\src\app\test-harness.routing.ts" />
+  </ItemGroup>
+  <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:48022/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1337</CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}" User="">
+        <WebProjectProperties>
+          <StartPageUrl>
+          </StartPageUrl>
+          <StartAction>CurrentPage</StartAction>
+          <AspNetDebugging>True</AspNetDebugging>
+          <SilverlightDebugging>False</SilverlightDebugging>
+          <NativeDebugging>False</NativeDebugging>
+          <SQLDebugging>False</SQLDebugging>
+          <ExternalProgram>
+          </ExternalProgram>
+          <StartExternalURL>
+          </StartExternalURL>
+          <StartCmdLineArguments>
+          </StartCmdLineArguments>
+          <StartWorkingDirectory>
+          </StartWorkingDirectory>
+          <EnableENC>False</EnableENC>
+          <AlwaysStartWebServerOnDebug>False</AlwaysStartWebServerOnDebug>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>

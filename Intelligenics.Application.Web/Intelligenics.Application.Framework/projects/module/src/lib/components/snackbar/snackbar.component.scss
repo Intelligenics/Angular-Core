@@ -1,0 +1,103 @@
+//////////////////////////////////////////////////////////////////////////
+///
+/// Intelligenics Angular Application Framework
+/// Copyright(C) 2019 Matthew Parton M.Sc
+///
+/// This program is free software: you can redistribute it and / or modify
+/// it under the terms of the GNU General Public License as published by
+/// the Free Software Foundation, either version 3 of the License, or
+/// (at your option) any later version.
+///
+/// This program is distributed in the hope that it will be useful,
+/// but WITHOUT ANY WARRANTY; without even the implied warranty of
+/// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.See the
+/// GNU General Public License for more details.
+///
+/// You should have received a copy of the GNU General Public License
+/// along with this program. If not, see < https://www.gnu.org/licenses/>.
+///
+/// Contact information
+///
+/// Name: Matthew Parton M.Sc
+///
+/// LinkedIn Profile: https://www.linkedin.com/in/intelligenics/
+/// Website: http://www.intelligenics.co.uk
+/// Email: matthewparton@intelligenics.co.uk
+///
+//////////////////////////////////////////////////////////////////////////
+
+$snackbar-background: var(--int-app-snackbar-background, lighten(black,10%));
+$snackbar-border-radius: var(--int-app-snackbar-border-radius, 0.3rem);
+$snackbar-color: var(--int-app-snackbar-color, white);
+$snackbar-shadow: var(--int-app-snackbar-shadow, 0.1rem 0.1rem 0.1rem 0.1rem lighten(black,30%));
+$snackbar-backdrop-background: var(--int-app-snackbar-backdrop-background, black); 
+$snackbar-error: var(--int-app-snackbar-error, red);
+$snackbar-warning: var(--int-app-snackbar-warning, orange);
+$snackbar-info: var(--int-app-snackbar-info, skyblue);
+
+int-app-snackbar,
+:host
+{
+}
+
+.int-app-snackbar
+{
+  &__container
+  {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  &-alert
+  {
+    margin-bottom: 1rem;
+    background-color: $snackbar-background;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: $snackbar-border-radius;
+    box-shadow: $snackbar-shadow;
+
+    &__message
+    {
+      color: $snackbar-color;
+      align-items: center;
+      padding: 1rem;
+      padding-left: 0;
+    }
+
+    &__icon
+    {
+      text-align: center;
+
+      .fa-info-circle,
+      .fa-exclamation-circle,
+      .fa-question-circle,
+      .fa-exclamation-triangle
+      {
+        font-size: 3rem;
+      }
+
+      .fa-exclamation-circle
+      {
+        color: $snackbar-error;
+      }
+
+      .fa-exclamation-triangle
+      {
+        color: $snackbar-warning;
+      }
+
+      .fa-question-circle
+      {
+        color: $snackbar-info;
+      }
+
+      .fa-info-circle
+      {
+        color: $snackbar-info;
+      }
+    }
+  }
+}
