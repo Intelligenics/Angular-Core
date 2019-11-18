@@ -57,6 +57,7 @@
     <Content Include="projects\test-harness\src\assets\settings.json">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="projects\test-harness\src\proxy.conf.json" />
     <Content Include="README.md" />
   </ItemGroup>
   <ItemGroup>
@@ -75,12 +76,12 @@
     <Folder Include="projects\module\src\lib\components\snackbar\" />
     <Folder Include="projects\module\src\lib\guards\" />
     <Folder Include="projects\module\src\lib\models\" />
-    <Folder Include="projects\module\src\lib\resolver\" />
     <Folder Include="projects\module\src\lib\services\" />
     <Folder Include="projects\test-harness\" />
     <Folder Include="projects\test-harness\src\" />
     <Folder Include="projects\test-harness\src\app\" />
     <Folder Include="projects\test-harness\src\app\components\" />
+    <Folder Include="projects\test-harness\src\app\services\" />
     <Folder Include="projects\test-harness\src\assets\" />
   </ItemGroup>
   <ItemGroup>
@@ -90,7 +91,6 @@
     <TypeScriptCompile Include="projects\module\src\lib\models\authentication.model.ts" />
     <TypeScriptCompile Include="projects\module\src\lib\models\codes.model.ts" />
     <TypeScriptCompile Include="projects\module\src\lib\models\error.model.ts" />
-    <TypeScriptCompile Include="projects\module\src\lib\resolver\settings.resolver.ts" />
     <TypeScriptCompile Include="projects\module\src\lib\services\authentication.interceptor.ts" />
     <TypeScriptCompile Include="projects\module\src\lib\services\application.service.ts" />
     <TypeScriptCompile Include="projects\module\src\lib\services\authentication.service.ts" />
@@ -118,6 +118,8 @@
     <TypeScriptCompile Include="projects\test-harness\src\app\components\navigation.component.ts" />
     <TypeScriptCompile Include="projects\test-harness\src\app\components\content.component.ts" />
     <TypeScriptCompile Include="projects\test-harness\src\app\components\test.component.ts" />
+    <TypeScriptCompile Include="projects\test-harness\src\app\services\test.service.spec.ts" />
+    <TypeScriptCompile Include="projects\test-harness\src\app\services\test.service.ts" />
     <TypeScriptCompile Include="projects\test-harness\src\app\test-harness.module.ts" />
     <TypeScriptCompile Include="projects\test-harness\src\app\test-harness.routing.ts" />
   </ItemGroup>
