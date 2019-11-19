@@ -1,11 +1,10 @@
 {
   "name": "@intelligenics/application-styles",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "scripts": {
     "serve": "ng serve",
     "build": "ng build",
-    "package": "npm run build && cd projects/module && npm pack",
-    "publish": "npm run build && copy .npmrc .\\projects\\module && cd projects/module && npm publish"
+    "publish": "npm run build &&  cd projects/module && npm publish --access public"
   },
   "private": true,
   "dependencies": {
