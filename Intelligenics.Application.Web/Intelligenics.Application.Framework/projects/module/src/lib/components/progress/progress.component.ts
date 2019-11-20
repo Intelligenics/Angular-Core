@@ -26,7 +26,7 @@
 ///
 //////////////////////////////////////////////////////////////////////////
 
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, HostBinding } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, HostBinding, ViewEncapsulation } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { LoadingService } from '../../services/loading.service';
 
@@ -34,6 +34,7 @@ import { LoadingService } from '../../services/loading.service';
     changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'int-app-progress',
     styleUrls: ['progress.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     templateUrl: 'progress.component.html'
 })
 export class ProgressComponent implements OnDestroy

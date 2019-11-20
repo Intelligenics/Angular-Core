@@ -58,6 +58,15 @@ import { AuthenticationInterceptor } from "./services/authentication.interceptor
     exports:
         [
             FrameworkComponent,
+            LeftSideBarComponent,
+            RightSideBarComponent,
+            BottomSideBarComponent,
+            TopSideBarComponent,
+            SnackbarComponent,
+            AlertComponent,
+            DialogComponent,
+            AboutComponent,
+            ProgressComponent,
         ],
     declarations:
         [

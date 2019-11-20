@@ -156,6 +156,7 @@ export class TopSideBarComponent extends SidebarComponent
                 leftSidebarOpenClose,
             ],
         selector: "int-app-leftsidebar",
+        encapsulation: ViewEncapsulation.None,
         styleUrls: ['sidebar.component.scss'],
         template: `<div class="int-app-leftsidebar__sidebar" [@leftSidebarOpenClose]="state">
                     <router-outlet></router-outlet>
@@ -179,6 +180,7 @@ export class LeftSideBarComponent extends SidebarComponent
                 rightSidebarOpenClose,
             ],
         selector: "int-app-rightsidebar",
+        encapsulation: ViewEncapsulation.None,
         styleUrls: ['sidebar.component.scss'],
         template: `<div class="int-app-rightsidebar__sidebar" [@rightSidebarOpenClose]="state">
                     <router-outlet></router-outlet>
@@ -203,6 +205,7 @@ export class RightSideBarComponent extends SidebarComponent
                 bottomSidebarOpenClose,
             ],
         selector: "int-app-bottomsidebar",
+        encapsulation: ViewEncapsulation.None,
         styleUrls: ['sidebar.component.scss'],
         template: `<div class="int-app-bottomsidebar__sidebar" [@bottomSidebarOpenClose]="state">
                     <router-outlet></router-outlet>
