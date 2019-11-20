@@ -1,0 +1,19 @@
+
+int-components-toolbar,
+:host
+{
+    display: flex;
+    flex-direction: row;
+}
+
+
+.int-components-toolbar
+{
+
+    &__items
+    {
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+    }
+}

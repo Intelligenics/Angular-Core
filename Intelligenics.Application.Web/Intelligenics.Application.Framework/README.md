@@ -375,8 +375,8 @@ The framework can be styled using the css variables provided. You can view the S
 * --int-app-progress-height
 
 # Demo
-Here is a full demonstration of the feature being used. 
-Format: ![Demonstration](demo.gif)
+Here is a full demonstration of the features being used.
+![Demonstration](https://github.com/Intelligenics/Angular-Core/blob/develop/Intelligenics.Application.Web/Intelligenics.Application.Framework/demo.gif)
  
 # Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. 

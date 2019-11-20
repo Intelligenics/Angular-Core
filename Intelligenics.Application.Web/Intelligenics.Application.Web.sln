@@ -7,6 +7,8 @@ Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Intelligenics.Application.F
 EndProject
 Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Intelligenics.Application.Styles", "Intelligenics.Application.Styles\Intelligenics.Application.Styles.njsproj", "{147A4304-E433-4919-BB10-719CDD0AC3D8}"
 EndProject
+Project("{9092AA53-FB77-4645-B42D-1CCCA6BD08BD}") = "Intelligenics.Application.Components", "Intelligenics.Application.Components\Intelligenics.Application.Components.njsproj", "{7FFA98D5-A43C-4D8E-A9AE-FA6E75B84F88}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{147A4304-E433-4919-BB10-719CDD0AC3D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{147A4304-E433-4919-BB10-719CDD0AC3D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{147A4304-E433-4919-BB10-719CDD0AC3D8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7FFA98D5-A43C-4D8E-A9AE-FA6E75B84F88}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7FFA98D5-A43C-4D8E-A9AE-FA6E75B84F88}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7FFA98D5-A43C-4D8E-A9AE-FA6E75B84F88}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7FFA98D5-A43C-4D8E-A9AE-FA6E75B84F88}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

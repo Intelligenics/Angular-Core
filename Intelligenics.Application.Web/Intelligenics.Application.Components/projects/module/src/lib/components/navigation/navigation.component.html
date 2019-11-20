@@ -1,0 +1,7 @@
+<div class="int-components-navigation__items">
+    <ng-container *ngFor="let item of items">
+        <int-components-treeitem [item]="item" [text]="item.text" [items]="item.items" [childTemplate]="childTemplate" [rootTemplate]="rootTemplate"
+                                 (expand)="onItemExpanded($event)" (click)="onItemClicked($event)">
+        </int-components-treeitem>
+    </ng-container>
+</div>

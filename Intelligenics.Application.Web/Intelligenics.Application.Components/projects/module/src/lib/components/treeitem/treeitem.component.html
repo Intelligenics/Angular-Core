@@ -1,0 +1,21 @@
+<div class="int-components-treeitem__row">
+  <div class="int-components-treeitem__text" (click)="onItemClicked($event,item)"> 
+    <int-navigation-template-root [item]="item" [innerTemplate]="GetTemplate()"></int-navigation-template-root> 
+  </div>
+  <div class="int-components-treeitem__expander" [class.expanded]="item.isExpanded" (click)="onItemExpanded($event,item)" *ngIf="item.hasChildren">
+    <i class="int-components-treeitem__arrow fa fa-caret-left" [class.expanded]="item.isExpanded"></i>
+  </div>
+</div>
+<div class="int-components-treeitem__items" >
+  <div class="int-components-treeitem__container" [class.int-components-treeitem__container--expanded]="item.isExpanded">
+    <ng-container *ngFor="let childItem of items">
+      <div class="int-components-treeitem__item">
+        <int-components-treeitem [hasChildren]="childItem.hasChildren" [icon]="childItem.icon"
+                                 [item]="childItem" [text]="childItem.text" [childTemplate]="childTemplate"
+                                 [items]="childItem.items"
+                                 (expand)="onChildItemExpanded($event)" (click)="onChildItemClicked($event)"></int-components-treeitem>
+      </div>
+    </ng-container>
+  </div>
+</div>
+
