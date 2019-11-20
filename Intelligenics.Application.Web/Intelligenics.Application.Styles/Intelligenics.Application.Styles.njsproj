@@ -78,8 +78,6 @@
   </ItemGroup>
   <ItemGroup>
     <TypeScriptCompile Include="projects\module\src\lib\components\styles.component.ts" />
-    <TypeScriptCompile Include="projects\module\src\lib\module.ts" />
-    <TypeScriptCompile Include="projects\module\src\lib\routing.ts" />
   </ItemGroup>
   <Import Project="$(VSToolsPath)\Node.js Tools\Microsoft.NodejsToolsV2.targets" />
   <ProjectExtensions>

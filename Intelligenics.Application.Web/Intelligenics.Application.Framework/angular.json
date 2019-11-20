@@ -177,15 +177,7 @@
       "sourceRoot": "projects/module/src",
       "prefix": "lib",
       "architect":
-      {
-        "publish":
-        {
-          "builder": "@intelligenics/angular-devkit:publish-module",
-          "options":
-          {
-            "companyName": "intelligenics"
-          }
-        },
+      { 
         "deploy":
         {
           "builder": "@intelligenics/angular-devkit:deploy-assets",
