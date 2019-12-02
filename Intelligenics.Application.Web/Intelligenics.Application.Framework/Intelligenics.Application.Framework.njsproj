@@ -33,7 +33,6 @@
   </PropertyGroup>
   <ItemGroup>
     <Content Include="package.json" />
-    <Content Include="projects\module\README.md" />
     <Content Include="projects\module\src\lib\components\progress\progress.component.scss" />
     <Content Include="projects\module\src\lib\components\progress\progress.component.html" />
     <Content Include="projects\module\src\lib\components\about\about.component.html" />
