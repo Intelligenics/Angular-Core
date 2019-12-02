@@ -2,13 +2,18 @@
 
 This project provides a starter kit for beginning any angular project.  In most projects you will need a system to host dialogs, show alerts,  show sidebars, catch api errors meaningfully, ensure the user has logged in via security. This framework provides you with that out the box.  This is what is included with the framework
 
-- Dalogs via routing and services
+- Dialogs via routing and services
 - Sidebars via routing and services
 - Alerts through services
 - About box via services
 - API error trapping via HttpClient and angular interceptors
 - Login authentication via routing using bearer tokens
 - Progress indicator automatically shown when hitting APIs
+
+
+# Demo
+Here is a full demonstration of the features being used.
+![Demonstration](demos/demo.gif)
 
 
 # Installation
@@ -373,10 +378,6 @@ The framework can be styled using the css variables provided. You can view the S
 * --int-app-progress
 * --int-app-progress-bar
 * --int-app-progress-height
-
-# Demo
-Here is a full demonstration of the features being used.
-![Demonstration](https://github.com/Intelligenics/Angular-Core/blob/develop/Intelligenics.Application.Web/Intelligenics.Application.Framework/demo.gif)
  
 # Contributing
 Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change. 

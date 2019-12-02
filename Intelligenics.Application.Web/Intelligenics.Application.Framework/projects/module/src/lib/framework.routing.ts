@@ -34,11 +34,7 @@ import { BottomSideBarComponent, LeftSideBarComponent, RightSideBarComponent, To
 import { SnackbarComponent } from "./components/snackbar/snackbar.component";
 import { AuthenticationGuard } from "./guards/authentication.guard";
 import { SidebarPosition } from './services/sidebar.service';
-
-
-
-
-
+ 
 export class ApplicationRoutes
 {
     public static RoutesChangedEvent: Subject<Routes> = new Subject<Routes>();
@@ -58,8 +54,7 @@ export class ApplicationRoutes
 
 
 ApplicationRoutes.RoutesChangedEvent.subscribe( ( routes ) =>
-{
-
+{ 
     if ( ApplicationRoutes.AppRoutes.length == 6 ) // primary route
     {
         // Secure all routes
@@ -68,42 +63,8 @@ ApplicationRoutes.RoutesChangedEvent.subscribe( ( routes ) =>
             value.canActivate = [AuthenticationGuard];
             value.canActivateChild = [AuthenticationGuard];
         })
-    }
-
-    //routes
-
-
-    //// Add sidebar to main wildcard path
-    //routes
-    //    .filter( function ( value )
-    //    {
-    //        return "**" == value.path &&
-    //            null != value.children &&
-    //            null == value.outlet;
-    //    } )
-    //    .map( function ( value )
-    //    {
-    //        var _a;
-    //        ( _a = value.children ).push.apply( _a, SidebarRoutes );
-    //    } );
+    } 
 } );
-
-
-//// Primary route
-//ApplicationRoutes.AppRoutes =
-//    [
-//        {
-//            path: "",
-//            component: FrameworkComponent,
-//            //canActivate: [AuthenticationGuard],
-//            //canActivateChild: [AuthenticationGuard],
-//            children:
-//                [
-
-//                ],
-//        }
-//    ]
-
 
 export const SnackbarRoutes: Routes = [
     {

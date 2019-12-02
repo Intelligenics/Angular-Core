@@ -33,6 +33,7 @@ import { DialogOptions, MessageType } from "../../services/dialog.service";
 @Component({
     selector: "int-app-alert",
     templateUrl: "alert.component.html",
+    encapsulation: ViewEncapsulation.None,
     styleUrls: ['alert.component.scss']
 })
 export class AlertComponent

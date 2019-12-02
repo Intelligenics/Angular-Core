@@ -178,19 +178,16 @@
       "prefix": "lib",
       "architect":
       {
-        "publish":
-        {
-          "builder": "@intelligenics/angular-devkit:publish-module",
-          "options":
-          {
-            "companyName": "intelligenics"
-          }
-        },
         "deploy":
         {
           "builder": "@intelligenics/angular-devkit:deploy-assets",
           "options":
           {
+            "files": 
+            [
+              "license.txt",
+              "README.md"
+            ]
           }
         },
         "build":

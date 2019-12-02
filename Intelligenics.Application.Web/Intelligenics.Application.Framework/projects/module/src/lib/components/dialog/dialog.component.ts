@@ -27,7 +27,7 @@
 //////////////////////////////////////////////////////////////////////////
 
 
-import { Component, HostListener, OnDestroy } from '@angular/core';
+import { Component, HostListener, OnDestroy, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { backdropOpenClose, dialogOpenClose } from '../../animations/dialog.animation';
@@ -42,6 +42,7 @@ import { DialogClosingEventArgs, DialogOptions, DialogService, MessageType } fro
         ],
     selector: 'int-app-dialog',
     styleUrls: ['dialog.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     templateUrl: 'dialog.component.html'
 } )
 export class DialogComponent implements OnDestroy

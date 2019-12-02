@@ -25,13 +25,14 @@
 /// Email: matthewparton@intelligenics.co.uk
 ///
 //////////////////////////////////////////////////////////////////////////
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 
 @Component( {
     selector: "int-app-about",
     templateUrl: 'about.component.html',
+    encapsulation: ViewEncapsulation.None,
     styleUrls: ['about.component.scss']
 } )
 export class AboutComponent implements OnInit

@@ -33,6 +33,7 @@ import { Component, ViewEncapsulation } from '@angular/core';
     host: { class: 'int-app-framework' },
     selector: "int-app-framework",
     styleUrls: ['framework.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     templateUrl: 'framework.component.html'
 
 } )

@@ -54,6 +54,7 @@ import { SnackbarEventArgs, SnackbarMessageType, SnackbarService } from '../../s
     changeDetection: ChangeDetectionStrategy.OnPush,  
     selector: 'int-app-snackbar',
     styleUrls: ['snackbar.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     templateUrl: 'snackbar.component.html'
 } )
 export class SnackbarComponent
