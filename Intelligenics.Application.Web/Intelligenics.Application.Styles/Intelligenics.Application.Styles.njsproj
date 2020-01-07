@@ -54,7 +54,6 @@
     <Content Include="projects\module\css\7_trumps\_buttons.scss" />
     <Content Include="projects\module\css\7_trumps\_main.scss" />
     <Content Include="projects\module\css\main.scss" />
-    <Content Include="projects\module\css\trumps.scss" />
     <Content Include="projects\module\src\lib\components\styles.component.html" />
     <Content Include="projects\module\src\lib\components\styles.component.scss" />
     <Content Include="README.md" />
