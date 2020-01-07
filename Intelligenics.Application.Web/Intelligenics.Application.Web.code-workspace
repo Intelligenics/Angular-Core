@@ -8,6 +8,9 @@
 		},
 		{
 			"path": "Intelligenics.Application.Components"
+		},
+		{
+			"path": "build"
 		}
 	],
 	"settings": {

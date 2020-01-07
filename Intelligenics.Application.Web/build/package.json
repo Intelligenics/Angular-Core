@@ -1,0 +1,28 @@
+{
+    "name": "@intelligenics/module-builder",
+    "version": "1.0.1",
+    "license": "MIT",
+    "scripts": {
+        "build": "tsc --build",
+        "clean": "tsc --build --clean",
+        "debug": "npm run build && node modulize build 5CC4879",
+        "run": "node modulize install 5CC4879 && node modulize build 5CC4879"
+    },
+    "keywords": [
+        "angular",
+        "application framework",
+        "typescript"
+    ],
+    "author": {
+        "name": "Intelligenics Ltd."
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/Intelligenics/Angular-Core/blob/develop/Intelligenics.Application.Web"
+    },
+    "dependencies": {},
+    "devDependencies": {
+        "typescript": "^3.2.2",
+        "@types/node": "^13.1.4"
+    }
+}
