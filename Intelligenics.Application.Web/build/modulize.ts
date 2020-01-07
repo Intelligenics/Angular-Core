@@ -100,12 +100,12 @@ export class BumpPackageNumber
 { 
     private run(projectPath: string)
     {
-        fs.readFileSync(
-            let version: Array < string > = this.Configuration.Version.split(".");
-
-        if (version.length != 3)
-            throw "assembly version is not in correct format";
-
+        let packagePath = path.join(projectPath,"package.json");
+ 
+        let file =  fs.readFileSync(projectPath);  
+        
+        let data = JSON.parse(file.toString());
+ 
         let prerelease: Array<string> = version[2].split("-");
 
         let latest: number = parseInt(prerelease[1]);
@@ -113,7 +113,6 @@ export class BumpPackageNumber
 
         let finalversion: string = `${version[0]}.${version[1]}.${prerelease[0]}-${latest}`;
 
-        let data = JSON.parse(content);
         data.version = finalversion;
         return JSON.stringify(data, null, 2);
     }
