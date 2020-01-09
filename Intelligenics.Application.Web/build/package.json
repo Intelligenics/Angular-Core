@@ -1,12 +1,12 @@
 {
-    "name": "@intelligenics/module-builder",
+    "name": "@intelligenics/modulizer",
+    "description": "This package run npm commands against changed packages found on the branch",
     "version": "1.0.1",
     "license": "MIT",
     "scripts": {
         "build": "tsc --build",
         "clean": "tsc --build --clean",
-        "debug": "npm run build && node modulize build 5CC4879",
-        "run": "node modulize install 5CC4879 && node modulize build 5CC4879"
+        "run": "node modulize 5CC4879 npm run prepublish "
     },
     "keywords": [
         "angular",
@@ -20,9 +20,14 @@
         "type": "git",
         "url": "https://github.com/Intelligenics/Angular-Core/blob/develop/Intelligenics.Application.Web"
     },
-    "dependencies": {},
+    "dependencies": {
+        "copyfiles": "^2.1.1",
+        "cpx": "^1.5.0"
+    },
     "devDependencies": {
-        "typescript": "^3.2.2",
-        "@types/node": "^13.1.4"
+        "@types/glob": "^7.1.1",
+        "@types/node": "^13.1.4",
+        "glob": "^7.1.6",
+        "typescript": "^3.2.2"
     }
 }

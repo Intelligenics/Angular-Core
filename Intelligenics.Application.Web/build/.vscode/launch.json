@@ -14,8 +14,8 @@
             "preLaunchTask": "tsc: build - tsconfig.json",
             "program": "${workspaceFolder}\\modulize.js",
             "args": [
-                "build",
-                "5CC4879"
+                "5CC4879", 
+                "npm run prepublish" 
             ],
             "outFiles": [
                 "${workspaceFolder}/**/*.js"

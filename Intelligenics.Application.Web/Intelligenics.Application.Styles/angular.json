@@ -176,6 +176,17 @@
       "prefix": "lib",
       "architect":
       {
+        "deploy":
+        {
+          "builder": "@intelligenics/angular-devkit:deploy-assets",
+          "options":
+          {
+            "files":
+            [
+                "projects/module/css/**/*"
+            ]
+          }
+        },
         "build":
         {
           "builder": "@angular-devkit/build-ng-packagr:build",

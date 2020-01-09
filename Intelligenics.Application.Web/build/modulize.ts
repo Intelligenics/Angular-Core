@@ -20,18 +20,24 @@ import fs = require("fs");
 // e. if published:  commit bumped version number change 
 
 
-
 export class Modulizer
 {
-
-    public run(script: string, commitNo: string): void
+    public run(commitNo: string, script: string): void
     {
-        let projects = this.getChangedProjects(commitNo);
+        let git = new GitProcessor();
+        let packageGen = new PackageGenerator();
+
+        let projects = git.getChangedProjects(commitNo);
 
         console.log("The following projects will be affected");
         console.log("==================================================================");
         console.log(projects);
         console.log("\r\n");
+
+        
+        console.log("command is " + script);
+
+
 
         projects.forEach(project =>
         {
@@ -39,27 +45,35 @@ export class Modulizer
 
             try
             {
-                let scriptText = `npm run ${script} `;
+                if (script == "generate package") 
+                {
+                    packageGen.generate(cwd);
+                    return;
+                }
 
-                if (script == "install")
-                    scriptText = `npm ${script} `;
-
-
-                let buffer = execSync(scriptText, { cwd: cwd });
+                let buffer = execSync(script, { cwd: cwd });
                 console.log(buffer.toString());
             }
             catch (error)
             {
-                console.log(error.message);
+                if (error.message)
+                    console.log(error.message);
+                else
+                    console.log(error);
+
                 process.exit(1);
             }
         });
     }
 
+}
+
+export class GitProcessor
+{
     /**
      * This method gets all the projects that have been changed
      */
-    private getChangedProjects(commitNo: string): Array<string>
+    public getChangedProjects(commitNo: string): Array<string>
     {
         let output = execSync(`git diff --name-only ${commitNo}`);
 
@@ -96,33 +110,70 @@ export class Modulizer
     }
 }
 
-export class BumpPackageNumber
-{ 
-    private run(projectPath: string)
+export class PackageGenerator
+{
+    public generate(projectPath: string): void
     {
-        let packagePath = path.join(projectPath,"package.json");
- 
-        let file =  fs.readFileSync(projectPath);  
-        
-        let data = JSON.parse(file.toString());
- 
-        let prerelease: Array<string> = version[2].split("-");
+        let inputPackagePath = path.join(projectPath, "package.json");
+        let outputPackagePath = path.join(projectPath, "dist/module", "package.json");
 
-        let latest: number = parseInt(prerelease[1]);
+
+        if (!fs.existsSync(outputPackagePath))
+            throw "unable to create package as package.json does not exist. Try calling prepublish first";
+
+
+        let inputFile = fs.readFileSync(inputPackagePath);
+        let outputFile = fs.readFileSync(outputPackagePath);
+
+        let inputPackageJSON = JSON.parse(inputFile.toString());
+        let outputPackageJSON = JSON.parse(outputFile.toString());
+
+        this.setversion(inputPackageJSON, outputPackageJSON);
+        this.addProperties(inputPackageJSON, outputPackageJSON);
+
+
+        let fileOut = JSON.stringify(outputPackageJSON, null, 2);
+
+        fs.writeFileSync(outputPackagePath, fileOut);
+
+    }
+
+    private addProperties(inputPackageJSON: any, outputPackageJSON: any): void
+    {
+        outputPackageJSON.name = inputPackageJSON.name;
+        outputPackageJSON.author = inputPackageJSON.author;
+        outputPackageJSON.keywords = inputPackageJSON.keywords;
+        outputPackageJSON.repository = inputPackageJSON.repository;
+        outputPackageJSON.license = inputPackageJSON.license;
+        outputPackageJSON.peerDependencies = inputPackageJSON.dependencies;
+        outputPackageJSON.dependencies = null;
+        outputPackageJSON.devDependencies = null;
+    }
+
+    private setversion(inputPackageJSON: any, outputPackageJSON: any): void
+    {
+        let version: Array<string> = inputPackageJSON.version.split(".");
+
+        // Update minor number only
+        let latest: number = parseInt(version[2]);
         latest++;
 
-        let finalversion: string = `${version[0]}.${version[1]}.${prerelease[0]}-${latest}`;
+        let finalversion: string = `${version[0]}.${version[1]}.${latest}`;
 
-        data.version = finalversion;
-        return JSON.stringify(data, null, 2);
+        outputPackageJSON.version = finalversion;
     }
 }
 
 
 let mb = new Modulizer();
 
+if (process.argv.length < 3)
+    throw "the commit no and the command must be specified"; 
+  
+let commitno = process.argv[2];
+process.argv.shift();
+process.argv.shift();
+process.argv.shift();
 
-if (process.argv.length != 4)
-    throw "the script to call and the commitno must be specified";
-
-mb.run(process.argv[2], process.argv[3]);
+let command = process.argv.join(" ");
+mb.run(commitno, command);

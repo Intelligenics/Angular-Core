@@ -2,6 +2,7 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const child_process_1 = require("child_process");
 const path = require("path");
+const fs = require("fs");
 // 1.  Find all modules with file changes
 // git diff --name-only 5CC4879
 // a. build each module
@@ -14,27 +15,37 @@ const path = require("path");
 // npm package 
 // e. if published:  commit bumped version number change 
 class Modulizer {
-    run(script, commitNo) {
-        let projects = this.getChangedProjects(commitNo);
+    run(commitNo, script) {
+        let git = new GitProcessor();
+        let packageGen = new PackageGenerator();
+        let projects = git.getChangedProjects(commitNo);
         console.log("The following projects will be affected");
         console.log("==================================================================");
         console.log(projects);
         console.log("\r\n");
+        console.log("command is " + script);
         projects.forEach(project => {
             let cwd = path.join("..", project);
             try {
-                let scriptText = `npm run ${script} `;
-                if (script == "install")
-                    scriptText = `npm ${script} `;
-                let buffer = child_process_1.execSync(scriptText, { cwd: cwd });
+                if (script == "generate package") {
+                    packageGen.generate(cwd);
+                    return;
+                }
+                let buffer = child_process_1.execSync(script, { cwd: cwd });
                 console.log(buffer.toString());
             }
             catch (error) {
-                console.log(error.message);
+                if (error.message)
+                    console.log(error.message);
+                else
+                    console.log(error);
                 process.exit(1);
             }
         });
     }
+}
+exports.Modulizer = Modulizer;
+class GitProcessor {
     /**
      * This method gets all the projects that have been changed
      */
@@ -63,9 +74,49 @@ class Modulizer {
         return projects;
     }
 }
-exports.Modulizer = Modulizer;
+exports.GitProcessor = GitProcessor;
+class PackageGenerator {
+    generate(projectPath) {
+        let inputPackagePath = path.join(projectPath, "package.json");
+        let outputPackagePath = path.join(projectPath, "dist/module", "package.json");
+        if (!fs.existsSync(outputPackagePath))
+            throw "unable to create package as package.json does not exist. Try calling prepublish first";
+        let inputFile = fs.readFileSync(inputPackagePath);
+        let outputFile = fs.readFileSync(outputPackagePath);
+        let inputPackageJSON = JSON.parse(inputFile.toString());
+        let outputPackageJSON = JSON.parse(outputFile.toString());
+        this.setversion(inputPackageJSON, outputPackageJSON);
+        this.addProperties(inputPackageJSON, outputPackageJSON);
+        let fileOut = JSON.stringify(outputPackageJSON, null, 2);
+        fs.writeFileSync(outputPackagePath, fileOut);
+    }
+    addProperties(inputPackageJSON, outputPackageJSON) {
+        outputPackageJSON.name = inputPackageJSON.name;
+        outputPackageJSON.author = inputPackageJSON.author;
+        outputPackageJSON.keywords = inputPackageJSON.keywords;
+        outputPackageJSON.repository = inputPackageJSON.repository;
+        outputPackageJSON.license = inputPackageJSON.license;
+        outputPackageJSON.peerDependencies = inputPackageJSON.dependencies;
+        outputPackageJSON.dependencies = null;
+        outputPackageJSON.devDependencies = null;
+    }
+    setversion(inputPackageJSON, outputPackageJSON) {
+        let version = inputPackageJSON.version.split(".");
+        // Update minor number only
+        let latest = parseInt(version[2]);
+        latest++;
+        let finalversion = `${version[0]}.${version[1]}.${latest}`;
+        outputPackageJSON.version = finalversion;
+    }
+}
+exports.PackageGenerator = PackageGenerator;
 let mb = new Modulizer();
-if (process.argv.length != 4)
-    throw "the script to call and the commitno must be specified";
-mb.run(process.argv[2], process.argv[3]);
+if (process.argv.length < 3)
+    throw "the commit no and the command must be specified";
+let commitno = process.argv[2];
+process.argv.shift();
+process.argv.shift();
+process.argv.shift();
+let command = process.argv.join(" ");
+mb.run(commitno, command);
 //# sourceMappingURL=modulize.js.map
