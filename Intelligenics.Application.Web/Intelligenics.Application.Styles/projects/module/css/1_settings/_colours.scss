@@ -1,4 +1,3 @@
-
 //Grey scale colours
 $black: #000000;
 $grey10: lighten(black, 10%);
@@ -13,60 +12,30 @@ $grey90: lighten(black, 90%);
 $grey95: lighten(black, 95%);
 $white: #fff;
 
-:root
-{
-  --theme-primary: #F18500;
-  --theme-primary-light: #2f8990;
-  --theme-primary-dark: #397184;
-  --theme-secondary: #2f8990;
-  --theme-secondary-light: #94efa6;
-  --theme-secondary-dark: #2f8b4a;
-  --theme-tertiary: #777675;
-  --theme-tertiary-light: #B0BDD0;
-  --theme-tertiary-dark: #B0BDD0;
-  --theme-light: $grey90;
-  --theme-dark: $grey20; 
-  --theme-success:green;
-  --theme-warning:orange;
-  --theme-error:red; 
-  --theme-info: lightblue;
-  --theme-disabled : $grey80; 
-}
-
-// Bootstrap overrides to map this library theme
-$theme-colors: ( 
-    "primary":    #F18500,
-    "secondary":  #2f8990,
-    "success":    #777675,
-    "info":       lightblue,
-    "warning":    orange,
-    "danger":     red,
-    "light":      $grey90,
-    "dark":       $grey20
-); 
-
-//Theme colours
-$theme-primary: var(--theme-primary);
-$theme-primary-light: var(--theme-primary-light);
-$theme-primary-dark: var(--theme-primary-dark);
-$theme-secondary: var(--theme-secondary);
-$theme-secondary-light: var(--theme-secondary-light);
-$theme-secondary-dark: var(--theme-secondary-dark);
-$theme-tertiary: var(--theme-tertiary);
-$theme-tertiary-light: var(--theme-tertiary-dark);
-$theme-tertiary-dark: var(--theme-tertiary-dark);
+$theme-primary: #F18500;
+$theme-primary-light: #2f8990;
+$theme-primary-dark: #397184;
+$theme-secondary: #2f8990;
+$theme-secondary-light: #94efa6;
+$theme-secondary-dark: #2f8b4a;
+$theme-tertiary: #777675;
+$theme-tertiary-light: #B0BDD0;
+$theme-tertiary-dark: #B0BDD0;
 $theme-light: $grey90;
 $theme-dark: $grey20;
+$theme-success:green;
+$theme-warning:orange;
+$theme-error:red;
+$theme-danger:red;
+$theme-info: lightblue;
+$theme-disabled : $grey80; 
 
-// Error states
-$theme-success: var(--theme-success);
-$theme-warning: var(--theme-warning);
-$theme-error: var(--theme-error);
-$theme-danger: $theme-error;
-$theme-info: var(--theme-info);
-$theme-disabled: var(--theme-disabled);
-
-
- 
-
-
+// Bootstrap overrides to map this library theme
+$theme-colors: ("primary": #F18500,
+  "secondary": #2f8990,
+  "success": #777675,
+  "info": lightblue,
+  "warning": orange,
+  "danger": red,
+  "light": $grey90,
+  "dark": $grey20);
