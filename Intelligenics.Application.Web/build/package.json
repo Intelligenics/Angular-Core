@@ -1,7 +1,7 @@
 {
     "name": "@intelligenics/modulizer",
     "description": "This package runs npm commands against changed packages found on the branch using intelligenics build",
-    "version": "1.0.5",
+    "version": "1.0.7",
     "main": "cli.js",
     "bin": {
         "modulize": "./cli.js"
@@ -10,7 +10,7 @@
     "scripts": {
         "build": "tsc --build",
         "clean": "tsc --build --clean",
-        "prepublish-projects": "node modulize 5CC4879 npm run prepublish ",
+        "prepublish-projects": "node modulize 5CC4879 npm run pre-publish ",
         "package-projects": "node modulize 5CC4879 generate package",
         "publish": "npm run build && npm publish --access public"
     },
@@ -21,11 +21,7 @@
     ],
     "author": {
         "name": "Intelligenics Ltd."
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/Intelligenics/Angular-Core/blob/develop/Intelligenics.Application.Web"
-    },
+    }, 
     "dependencies": {
         "copyfiles": "^2.1.1",
         "cpx": "^1.5.0"

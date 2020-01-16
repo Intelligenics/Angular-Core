@@ -1,7 +1,9 @@
 # Intelligenics Modular Builder
 
 This package builds modules by looks for differences in the check in for a branch. Based on the projects returned it then runs 
-a specified npm command against each project.   
+a specified npm command against each project. 
+
+This script must be run from the root solution folder where your projects are located. If your are unsure of the solutions structure review the @intelligenics/application-framework project in npm 
 
 # parameters 
 To run the command do the following 

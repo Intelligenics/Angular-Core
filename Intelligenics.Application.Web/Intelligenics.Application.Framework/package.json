@@ -21,7 +21,7 @@
         "lint": "ng lint",
         "e2e": "ng e2e",
         "build-library": "npm run build module",
-        "prepublish": "npm run build module && ng run module:deploy",
+        "pre-publish": "npm run build module && ng run module:deploy",
         "publish": "cd dist/module && npm publish --access public"
     },
     "dependencies": {
@@ -38,7 +38,7 @@
         "zone.js": "~0.9.1"
     },
     "devDependencies": {
-        "@angular-devkit/build-angular": "~0.803.15",
+        "@angular-devkit/build-angular": "^0.803.23",
         "@angular-devkit/build-ng-packagr": "~0.803.15",
         "@angular/cli": "~8.3.14",
         "@angular/compiler-cli": "~8.2.11",
