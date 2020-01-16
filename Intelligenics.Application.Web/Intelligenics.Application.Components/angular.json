@@ -183,7 +183,7 @@
           "builder": "@intelligenics/angular-devkit:deploy-assets",
           "options":
           {
-            "files": 
+            "files":  
             [
               "license.txt",
               "README.md"
