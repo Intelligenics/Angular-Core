@@ -4,9 +4,16 @@
   "scripts": {
     "serve": "ng serve",
     "build": "ng build",
-    "prepublish": "ng run module:deploy",
+    "prepublish": "npm run build module && ng run module:deploy",
     "publish": "npm run build &&  cd projects/module && npm publish --access public"
   },
+  "keywords": [
+    "angular",
+    "application framework",
+    "dialogs",
+    "sidebars",
+    "alerts"
+  ],
   "private": true,
   "dependencies": {
     "@angular/animations": "~8.2.11",
@@ -17,7 +24,6 @@
     "@angular/platform-browser": "~8.2.11",
     "@angular/platform-browser-dynamic": "~8.2.11",
     "@angular/router": "~8.2.11",
-    "@intelligenics/angular-devkit": "file:../../../Build Tools/Intelligenics.DevOps/Intelligenics.Angular.DevKit/intelligenics-angular-devkit-1.0.33.tgz",
     "@intelligenics/application-framework": "^1.0.0-31",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",
@@ -30,6 +36,7 @@
     "@angular/compiler-cli": "~8.2.11",
     "@angular/language-service": "~8.2.11",
     "@fortawesome/fontawesome-free": "^5.11.2",
+    "@intelligenics/angular-devkit": "^1.0.35",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",

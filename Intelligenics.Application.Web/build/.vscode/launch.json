@@ -15,7 +15,7 @@
             "program": "${workspaceFolder}\\modulize.js",
             "args": [
                 "5CC4879", 
-                "npm run prepublish" 
+                "generate package" 
             ],
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
