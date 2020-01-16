@@ -1,23 +1,9 @@
+#!/usr/bin/env node
+
 import { execSync } from "child_process";
 
 import path = require("path");
 import fs = require("fs");
-// 1.  Find all modules with file changes
-// git diff --name-only 5CC4879
-
-// a. build each module
-// npm run build
-
-// b. test each module
-// npm run test
-
-// c. bump package version number
-// run package bump
-
-// d. publish package
-// npm package 
-
-// e. if published:  commit bumped version number change 
 
 
 export class Modulizer
@@ -31,10 +17,10 @@ export class Modulizer
 
         console.log("The following projects will be affected");
         console.log("==================================================================");
-        console.log(projects);
+        console.log(projects.join("\r\n"));
         console.log("\r\n");
 
-        
+
         console.log("command is " + script);
 
 
@@ -89,12 +75,14 @@ export class GitProcessor
 
         directories.forEach((directory: string) =>
         {
+            let subdirs = directory.split(/\//); 
+
             // must exclude portal projects only modules are built this way
-            if (directory.indexOf("portal") > 0) return;
-
-            let subdirs = directory.split(/\//);
-
+            if (directory.indexOf("portal") > 0) return; 
+            
             if (subdirs.length < 3) return;
+            
+            if (subdirs[1].indexOf(".") == -1) return;
 
             // See if the project already exists
             let project = projects.find((item) =>
@@ -117,10 +105,8 @@ export class PackageGenerator
         let inputPackagePath = path.join(projectPath, "package.json");
         let outputPackagePath = path.join(projectPath, "dist/module", "package.json");
 
-
         if (!fs.existsSync(outputPackagePath))
             throw "unable to create package as package.json does not exist. Try calling prepublish first";
-
 
         let inputFile = fs.readFileSync(inputPackagePath);
         let outputFile = fs.readFileSync(outputPackagePath);
@@ -131,11 +117,9 @@ export class PackageGenerator
         this.setversion(inputPackageJSON, outputPackageJSON);
         this.addProperties(inputPackageJSON, outputPackageJSON);
 
-
         let fileOut = JSON.stringify(outputPackageJSON, null, 2);
 
         fs.writeFileSync(outputPackagePath, fileOut);
-
     }
 
     private addProperties(inputPackageJSON: any, outputPackageJSON: any): void
@@ -146,8 +130,10 @@ export class PackageGenerator
         outputPackageJSON.repository = inputPackageJSON.repository;
         outputPackageJSON.license = inputPackageJSON.license;
         outputPackageJSON.peerDependencies = inputPackageJSON.dependencies;
-        outputPackageJSON.dependencies = null;
-        outputPackageJSON.devDependencies = null;
+
+
+        delete outputPackageJSON["dependencies"]; 
+        delete outputPackageJSON["devDependencies"];
     }
 
     private setversion(inputPackageJSON: any, outputPackageJSON: any): void
@@ -168,8 +154,8 @@ export class PackageGenerator
 let mb = new Modulizer();
 
 if (process.argv.length < 3)
-    throw "the commit no and the command must be specified"; 
-  
+    throw "the commit no and the command must be specified";
+
 let commitno = process.argv[2];
 process.argv.shift();
 process.argv.shift();
