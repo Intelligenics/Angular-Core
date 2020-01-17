@@ -5,10 +5,10 @@ const child_process_1 = require("child_process");
 const path = require("path");
 const fs = require("fs");
 class Modulizer {
-    run(commitNo, script) {
+    run(script) {
         let git = new GitProcessor();
         let packageGen = new PackageGenerator();
-        let projects = git.getChangedProjects(commitNo);
+        let projects = git.getChangedProjects();
         console.log("The following projects will be affected");
         console.log("==================================================================");
         console.log(projects.join("\r\n"));
@@ -17,12 +17,15 @@ class Modulizer {
         projects.forEach(project => {
             let cwd = path.join(process.cwd(), project);
             try {
-                if (script == "generate package") {
-                    packageGen.generate(cwd);
-                    return;
+                switch (script) {
+                    case "generate package":
+                        packageGen.generate(cwd);
+                        break;
+                    default:
+                        let buffer = child_process_1.execSync(script, { cwd: cwd });
+                        console.log(buffer.toString());
+                        break;
                 }
-                let buffer = child_process_1.execSync(script, { cwd: cwd });
-                console.log(buffer.toString());
             }
             catch (error) {
                 if (error.message)
@@ -39,8 +42,11 @@ class GitProcessor {
     /**
      * This method gets all the projects that have been changed
      */
-    getChangedProjects(commitNo) {
-        let output = child_process_1.execSync(`git diff --name-only ${commitNo}`);
+    getChangedProjects() {
+        let commits = child_process_1.execSync(`git log -2 --pretty=format:"%H"`).toString().split(/\r?\n/);
+        if (!commits || 0 == commits.length)
+            console.log("no commits found");
+        let output = child_process_1.execSync(`git diff --name-only ${commits[0]} ${commits[1]}`);
         let directories = output.toString().split(/\r?\n/);
         if (0 == directories.length) {
             console.log("no differences identified in commit");
@@ -79,8 +85,10 @@ class PackageGenerator {
         let outputPackageJSON = JSON.parse(outputFile.toString());
         this.setversion(inputPackageJSON, outputPackageJSON);
         this.addProperties(inputPackageJSON, outputPackageJSON);
-        let fileOut = JSON.stringify(outputPackageJSON, null, 2);
-        fs.writeFileSync(outputPackagePath, fileOut);
+        let inputFileOut = JSON.stringify(inputPackageJSON, null, 2);
+        let outputFileOut = JSON.stringify(outputPackageJSON, null, 2);
+        fs.writeFileSync(inputPackagePath, inputFileOut);
+        fs.writeFileSync(outputPackagePath, outputFileOut);
     }
     addProperties(inputPackageJSON, outputPackageJSON) {
         outputPackageJSON.name = inputPackageJSON.name;
@@ -99,16 +107,19 @@ class PackageGenerator {
         latest++;
         let finalversion = `${version[0]}.${version[1]}.${latest}`;
         outputPackageJSON.version = finalversion;
+        inputPackageJSON.version = finalversion;
     }
 }
 exports.PackageGenerator = PackageGenerator;
+class WhitelistValidator {
+}
+exports.WhitelistValidator = WhitelistValidator;
 let mb = new Modulizer();
 if (process.argv.length < 3)
-    throw "the commit no and the command must be specified";
+    throw "the command must be specified";
 let commitno = process.argv[2];
 process.argv.shift();
 process.argv.shift();
-process.argv.shift();
 let command = process.argv.join(" ");
-mb.run(commitno, command);
+mb.run(command);
 //# sourceMappingURL=cli.js.map

@@ -9,13 +9,13 @@ This script must be run from the root solution folder where your projects are lo
 To run the command do the following 
 
 ```
-node modulize COMMITNO COMMAND 
+node modulize COMMAND 
 ``` 
 
-So as an example the following command would use the commit no 5CC4879 and for each project found would run the npm command prepublish found in the scripts for each project
+So as an example, run the following command to run a specific command for each project found in your solution directory where changes have been made
 
 ``` 
-node modulize 5CC4879 npm run prepublish
+node modulize npm run prepublish
 ```
 
 # Contact Information

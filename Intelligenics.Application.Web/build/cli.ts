@@ -8,12 +8,12 @@ import fs = require("fs");
 
 export class Modulizer
 {
-    public run(commitNo: string, script: string): void
+    public run(script: string): void
     {
         let git = new GitProcessor();
         let packageGen = new PackageGenerator();
 
-        let projects = git.getChangedProjects(commitNo);
+        let projects = git.getChangedProjects();
 
         console.log("The following projects will be affected");
         console.log("==================================================================");
@@ -31,14 +31,16 @@ export class Modulizer
 
             try
             {
-                if (script == "generate package") 
+                switch (script)
                 {
-                    packageGen.generate(cwd);
-                    return;
+                    case "generate package":
+                        packageGen.generate(cwd);
+                        break;
+                    default:
+                        let buffer = execSync(script, { cwd: cwd });
+                        console.log(buffer.toString());
+                        break;
                 }
-
-                let buffer = execSync(script, { cwd: cwd });
-                console.log(buffer.toString());
             }
             catch (error)
             {
@@ -59,9 +61,15 @@ export class GitProcessor
     /**
      * This method gets all the projects that have been changed
      */
-    public getChangedProjects(commitNo: string): Array<string>
+    public getChangedProjects(): Array<string>
     {
-        let output = execSync(`git diff --name-only ${commitNo}`);
+
+        let commits = execSync(`git log -2 --pretty=format:"%H"`).toString().split(/\r?\n/);
+
+        if (!commits || 0 == commits.length)
+            console.log("no commits found");
+
+        let output = execSync(`git diff --name-only ${commits[0]} ${commits[1]}`);
 
         let directories = output.toString().split(/\r?\n/);
 
@@ -75,13 +83,13 @@ export class GitProcessor
 
         directories.forEach((directory: string) =>
         {
-            let subdirs = directory.split(/\//); 
+            let subdirs = directory.split(/\//);
 
             // must exclude portal projects only modules are built this way
-            if (directory.indexOf("portal") > 0) return; 
-            
+            if (directory.indexOf("portal") > 0) return;
+
             if (subdirs.length < 3) return;
-            
+
             if (subdirs[1].indexOf(".") == -1) return;
 
             // See if the project already exists
@@ -117,9 +125,11 @@ export class PackageGenerator
         this.setversion(inputPackageJSON, outputPackageJSON);
         this.addProperties(inputPackageJSON, outputPackageJSON);
 
-        let fileOut = JSON.stringify(outputPackageJSON, null, 2);
+        let inputFileOut = JSON.stringify(inputPackageJSON, null, 2);
+        let outputFileOut = JSON.stringify(outputPackageJSON, null, 2);
 
-        fs.writeFileSync(outputPackagePath, fileOut);
+        fs.writeFileSync(inputPackagePath, inputFileOut);
+        fs.writeFileSync(outputPackagePath, outputFileOut);
     }
 
     private addProperties(inputPackageJSON: any, outputPackageJSON: any): void
@@ -132,7 +142,7 @@ export class PackageGenerator
         outputPackageJSON.peerDependencies = inputPackageJSON.dependencies;
 
 
-        delete outputPackageJSON["dependencies"]; 
+        delete outputPackageJSON["dependencies"];
         delete outputPackageJSON["devDependencies"];
     }
 
@@ -147,19 +157,24 @@ export class PackageGenerator
         let finalversion: string = `${version[0]}.${version[1]}.${latest}`;
 
         outputPackageJSON.version = finalversion;
+        inputPackageJSON.version = finalversion;
     }
 }
 
 
+export class WhitelistValidator
+{
+    
+}
+
 let mb = new Modulizer();
 
 if (process.argv.length < 3)
-    throw "the commit no and the command must be specified";
+    throw "the command must be specified";
 
 let commitno = process.argv[2];
 process.argv.shift();
 process.argv.shift();
-process.argv.shift();
 
 let command = process.argv.join(" ");
-mb.run(commitno, command);
+mb.run(command);

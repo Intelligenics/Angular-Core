@@ -12,10 +12,10 @@
                 "<node_internals>/**"
             ],
             "preLaunchTask": "tsc: build - tsconfig.json",
-            "program": "${workspaceFolder}\\modulize.js",
+            "program": "${workspaceFolder}\\cli.js",
+            "cwd": "${workspaceFolder}/../",
             "args": [
-                "5CC4879", 
-                "generate package" 
+                "npm run pre-publish" 
             ],
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
