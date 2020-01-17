@@ -162,7 +162,7 @@
           },
           "configurations":
           {
-            "production":
+            "production": 
             {
               "devServerTarget": "test-harness:serve:production"
             }
