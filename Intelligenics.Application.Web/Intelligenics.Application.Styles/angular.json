@@ -170,7 +170,7 @@
     },
     "module":
     {
-      "projectType": "library",
+      "projectType": "library", 
       "root": "projects/module",
       "sourceRoot": "projects/module/src",
       "prefix": "lib",

@@ -24,6 +24,7 @@ export class Modulizer
         console.log("command is " + script);
 
 
+        let errorCount = 0;
 
         projects.forEach(project =>
         {
@@ -43,22 +44,23 @@ export class Modulizer
                 }
             }
             catch (error)
-            {
-
-              if (error.stdout)
+            { 
+                errorCount++;
+                if (error.stdout)
                     console.log(error.stdout.toString());
-                    
+
                 if (error.message)
                     console.log(error.message);
 
                 if (error.stderr)
-                    console.log(error.stderr.toString()); 
+                    console.log(error.stderr.toString());
                 else
-                    console.log(error);
-
-                process.exit(1);
+                    console.log(error); 
             }
         });
+
+        if (errorCount > 0) 
+            process.exit(1);
     }
 
 }

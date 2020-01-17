@@ -14,6 +14,7 @@ class Modulizer {
         console.log(projects.join("\r\n"));
         console.log("\r\n");
         console.log("command is " + script);
+        let errorCount = 0;
         projects.forEach(project => {
             let cwd = path.join(process.cwd(), project);
             try {
@@ -28,6 +29,7 @@ class Modulizer {
                 }
             }
             catch (error) {
+                errorCount++;
                 if (error.stdout)
                     console.log(error.stdout.toString());
                 if (error.message)
@@ -36,9 +38,10 @@ class Modulizer {
                     console.log(error.stderr.toString());
                 else
                     console.log(error);
-                process.exit(1);
             }
         });
+        if (errorCount > 0)
+            process.exit(1);
     }
 }
 exports.Modulizer = Modulizer;
