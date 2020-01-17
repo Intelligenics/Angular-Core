@@ -28,8 +28,12 @@ class Modulizer {
                 }
             }
             catch (error) {
+                if (error.stdout)
+                    console.log(error.stdout.toString());
                 if (error.message)
                     console.log(error.message);
+                if (error.stderr)
+                    console.log(error.stderr.toString());
                 else
                     console.log(error);
                 process.exit(1);

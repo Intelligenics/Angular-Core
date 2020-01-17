@@ -44,8 +44,15 @@ export class Modulizer
             }
             catch (error)
             {
+
+              if (error.stdout)
+                    console.log(error.stdout.toString());
+                    
                 if (error.message)
                     console.log(error.message);
+
+                if (error.stderr)
+                    console.log(error.stderr.toString()); 
                 else
                     console.log(error);
 
@@ -164,7 +171,7 @@ export class PackageGenerator
 
 export class WhitelistValidator
 {
-    
+
 }
 
 let mb = new Modulizer();

@@ -1,7 +1,7 @@
 {
     "name": "@intelligenics/modulizer",
     "description": "This package runs npm commands against changed packages found on the branch using intelligenics build",
-    "version": "1.0.9",
+    "version": "1.0.10",
     "main": "cli.js",
     "bin": {
         "modulize": "./cli.js"
