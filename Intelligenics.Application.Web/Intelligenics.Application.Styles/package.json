@@ -15,7 +15,7 @@
     "alerts"
   ],
   "private": true,
-  "dependencies": {
+  "dependencies": { 
     "@angular/animations": "~8.2.11",
     "@angular/common": "~8.2.11",
     "@angular/compiler": "~8.2.11",
