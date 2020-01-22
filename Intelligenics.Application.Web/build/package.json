@@ -6,7 +6,7 @@
     "bin": {
         "modulize": "./cli.js"
     },
-    "license": "MIT",
+    "license": "MIT", 
     "scripts": {
         "build": "tsc --build",
         "clean": "tsc --build --clean",
