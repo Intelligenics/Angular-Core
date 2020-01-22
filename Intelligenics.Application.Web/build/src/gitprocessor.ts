@@ -14,7 +14,7 @@ export class GitProcessor
 
         let commits = execSync(`git log --reverse ${commitsToProcess} --pretty=format:"%H"`).toString().split(/\r?\n/);
 
-        if (!commits || 0 == commits.length)
+        if (!commits || 0 == commits.length) 
             console.log("no commits found");
 
         console.log(commits);
