@@ -15,7 +15,8 @@
             "program": "${workspaceFolder}\\cli.js",
             "cwd": "${workspaceFolder}/../",
             "args": [
-                "npm run lint" 
+                "--commits-all",
+                "npm run lint", 
             ],
             "outFiles": [
                 "${workspaceFolder}/**/*.js"
