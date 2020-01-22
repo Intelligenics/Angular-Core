@@ -5,39 +5,40 @@ class GitProcessor {
     /**
      * This method gets all the projects that have been changed
      */
-    getProjects(commitCommand) {
-        let commitsToProcess = "-2";
-        if (commitCommand == "--commits-all")
-            commitsToProcess = "";
-        let commits = child_process_1.execSync(`git log --reverse ${commitsToProcess} --pretty=format:"%H"`).toString().split(/\r?\n/);
-        if (!commits || 0 == commits.length)
-            console.log("no commits found");
-        console.log(commits);
-        let projects = [];
-        commits.reduce((previousCommit, nextCommit) => {
-            let output = child_process_1.execSync(`git diff --name-only ${nextCommit} ${previousCommit}`);
-            let directories = output.toString().split(/\r?\n/);
-            if (0 == directories.length) {
-                console.log("no differences identified in commit");
-                return;
+    getProjects(commitCommand, branch1, branch2) {
+        // Default compare by branch
+        let command = `${branch1}..${branch2}`;
+        if (commitCommand != "-b") // Compare last 2 commits
+         {
+            let commits = child_process_1.execSync(`git log -2 --pretty=format:"%H"`).toString().split(/\r?\n/);
+            if (!commits || 0 == commits.length) {
+                console.log("no commits found");
+                return [];
             }
-            directories.forEach((directory) => {
-                let subdirs = directory.split(/\//);
-                // must exclude portal projects only modules are built this way
-                if (directory.indexOf("portal") > 0)
-                    return;
-                if (subdirs.length < 3)
-                    return;
-                if (subdirs[1].indexOf(".") == -1)
-                    return;
-                // See if the project already exists
-                let project = projects.find((item) => {
-                    return item == subdirs[1];
-                });
-                if (!project)
-                    projects.push(subdirs[1]);
+            command = `${commits[0]} ${commits[1]}`;
+        }
+        let projects = [];
+        let output = child_process_1.execSync(`git diff --name-only ${command}`);
+        let directories = output.toString().split(/\r?\n/);
+        if (0 == directories.length) {
+            console.log("no differences identified in commit");
+            return;
+        }
+        directories.forEach((directory) => {
+            let subdirs = directory.split(/\//);
+            // must exclude portal projects only modules are built this way
+            if (directory.indexOf("portal") > 0)
+                return;
+            if (subdirs.length < 3)
+                return;
+            if (subdirs[1].indexOf(".") == -1)
+                return;
+            // See if the project already exists
+            let project = projects.find((item) => {
+                return item == subdirs[1];
             });
-            return nextCommit;
+            if (!project)
+                projects.push(subdirs[1]);
         });
         return projects;
     }

@@ -5,10 +5,10 @@ const packagegenerator_1 = require("./packagegenerator");
 const child_process_1 = require("child_process");
 const path = require("path");
 class Modulizer {
-    run(commitCommand, script) {
+    run(commitCommand, script, branch1, branch2) {
         let git = new gitprocessor_1.GitProcessor();
         let packageGen = new packagegenerator_1.PackageGenerator();
-        let projects = git.getProjects(commitCommand);
+        let projects = git.getProjects(commitCommand, branch1, branch2);
         console.log("The following projects will be affected");
         console.log("==================================================================");
         console.log(projects.join("\r\n"));

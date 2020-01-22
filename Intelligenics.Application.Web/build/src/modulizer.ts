@@ -8,11 +8,11 @@ import path = require("path");
 
 export class Modulizer
 {
-    public run(commitCommand: string, script: string): void
+    public run(commitCommand: string, script: string, branch1: string, branch2: string): void
     {
         let git = new GitProcessor();
         let packageGen = new PackageGenerator();
-        let projects = git.getProjects(commitCommand);
+        let projects = git.getProjects(commitCommand,branch1,branch2);
         console.log("The following projects will be affected");
         console.log("==================================================================");
         console.log(projects.join("\r\n"));
