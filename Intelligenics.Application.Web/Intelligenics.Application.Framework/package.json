@@ -20,7 +20,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-library": "npm run build module",
+    "build-library": "npm run build module ",
     "pre-publish": "npm run build module && ng run module:deploy",
     "publish": "cd dist/module && npm publish --access public"
   },
