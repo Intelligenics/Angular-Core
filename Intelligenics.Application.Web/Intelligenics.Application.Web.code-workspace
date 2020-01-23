@@ -1,0 +1,22 @@
+{
+	"folders": [
+		{
+			"path": "Intelligenics.Application.Framework"
+		},
+		{
+			"path": "Intelligenics.Application.Styles"
+		},
+		{
+			"path": "Intelligenics.Application.Components"
+		},
+		{
+			"path": "build"
+		},
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"git.ignoreLimitWarning": true
+	}
+}

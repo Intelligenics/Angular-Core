@@ -1,0 +1,104 @@
+//////////////////////////////////////////////////////////////////////////
+///
+/// Intelligenics Angular Application Framework
+/// Copyright(C) 2019 Intelligenics Ltd.
+///
+/// Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"),
+/// to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute,
+/// sublicense, and / or sell copies of the Software, and to permit persons to whom the Software is furnished to do so,
+/// subject to the following conditions:
+///
+/// The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+///
+/// THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+/// FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+/// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE
+/// SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+///
+/// Contact Information
+///
+/// Name: Matthew Parton M.Sc.
+/// Feel free to contact me using the following details
+
+/// LinkedIn Profile: https://www.linkedin.com/in/intelligenics/
+/// Website: http://www.intelligenics.co.uk
+/// Email: matthewparton@intelligenics.co.uk
+///
+//////////////////////////////////////////////////////////////////////////
+
+
+$snackbar-background: var(--int-app-snackbar-background, lighten(black,10%));
+$snackbar-border-radius: var(--int-app-snackbar-border-radius, 0.3rem);
+$snackbar-color: var(--int-app-snackbar-color, white);
+$snackbar-shadow: var(--int-app-snackbar-shadow, 0.1rem 0.1rem 0.1rem 0.1rem lighten(black,30%));
+$snackbar-backdrop-background: var(--int-app-snackbar-backdrop-background, black); 
+$snackbar-error: var(--int-app-snackbar-error, red);
+$snackbar-warning: var(--int-app-snackbar-warning, orange);
+$snackbar-info: var(--int-app-snackbar-info, skyblue);
+
+int-app-snackbar,
+:host
+{
+}
+
+.int-app-snackbar
+{
+  &__container
+  {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+
+  &-alert
+  {
+    margin-bottom: 1rem;
+    background-color: $snackbar-background;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    border-radius: $snackbar-border-radius;
+    box-shadow: $snackbar-shadow;
+
+    &__message
+    {
+      color: $snackbar-color;
+      align-items: center;
+      padding: 1rem;
+      padding-left: 0;
+    }
+
+    &__icon
+    {
+      text-align: center;
+
+      .fa-info-circle,
+      .fa-exclamation-circle,
+      .fa-question-circle,
+      .fa-exclamation-triangle
+      {
+        font-size: 3rem;
+      }
+
+      .fa-exclamation-circle
+      {
+        color: $snackbar-error;
+      }
+
+      .fa-exclamation-triangle
+      {
+        color: $snackbar-warning;
+      }
+
+      .fa-question-circle
+      {
+        color: $snackbar-info;
+      }
+
+      .fa-info-circle
+      {
+        color: $snackbar-info;
+      }
+    }
+  }
+}

@@ -1,0 +1,42 @@
+<div class="container">
+  <div class="row mt-4">
+    <div class="col">
+      <h3 class="mb-4">Dialogs and Alerts</h3>
+      <button (click)="onShowAbout()">Show about</button>
+      <button (click)="onShowDialog()">Show dialog</button>
+      <button (click)="onShowInfo()">Show info</button>
+      <button (click)="onShowWarning()">Show warning</button>
+      <button (click)="onShowError()">Show error</button>
+      <button (click)="onShowQuestion()">Show question</button>
+      <button (click)="onShowConfirmation()">Show confirmation</button>
+      <button (click)="onShowSaveCancel()">Show save cancel</button>
+      <button (click)="onShowYesNo()">Show yes no</button>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col">
+      <h3 class="mb-4">Snackbars</h3>
+      <button (click)="onShowShackbarInfo()">Show Snackbar info</button>
+      <button (click)="onShowShackbarWarning()">Show Snackbar Warning</button>
+      <button (click)="onShowShackbarError()">Show Snackbar Error</button>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col">
+      <h3 class="mb-4">Sidebars</h3>
+      <button (click)="onShowSidebarLeft()">Show sidebar left</button>
+      <button (click)="onShowSidebarRight()">Show sidebar right</button>
+      <button (click)="onShowSidebarTop()">Show Sidebar top</button>
+      <button (click)="onShowSidebarBottom()">Show sidebar bottom</button>
+    </div>
+  </div>
+  <div class="row mt-4">
+    <div class="col">
+      <h3 class="mb-4">API Management</h3>
+      <button (click)="onTestAPIError()">Get Unhandled API error</button>
+      <button (click)="onTestLongRunning()">Run long running process</button>
+      <button (click)="onTestInvalidEndpoint()">Call Invalid endpoint</button>
+      <button (click)="onTestValidationError()">Get a validation error</button>
+    </div>
+  </div>
+</div>

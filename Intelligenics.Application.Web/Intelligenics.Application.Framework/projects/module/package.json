@@ -1,0 +1,25 @@
+{
+    "name": "@intelligenics/application-framework",
+    "version": "2.0.7",
+    "license": "MIT",
+    "author": {
+        "name": "Intelligenics Ltd."
+    },
+    "keywords": [
+        "angular",
+        "application framework",
+        "dialogs",
+        "sidebars",
+        "alerts"
+    ],
+    "repository": "https://github.com/Intelligenics/Angular-Core/tree/develop/Intelligenics.Application.Web",
+    "peerDependencies": {
+        "@angular/animations": "^8.2.11",
+        "@angular/common": "~8.2.11",
+        "@angular/compiler": "~8.2.11",
+        "@angular/core": "~8.2.11",
+        "@angular/forms": "~8.2.11",
+        "@angular/router": "~8.2.11",
+        "rxjs": "~6.4.0"
+    }
+}

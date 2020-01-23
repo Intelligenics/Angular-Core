@@ -1,0 +1,8 @@
+{
+  "authentication":
+  {
+    "isEnabled": false,
+    "authenticationCookie": "IgniusXDT",
+    "authenticationUrl": "http://signin.ignius.cloud"
+  }
+}
