@@ -8,12 +8,6 @@
 		},
 		{
 			"path": "Intelligenics.Application.Components"
-		},
-		{
-			"path": "build"
-		},
-		{
-			"path": "."
 		}
 	],
 	"settings": {
