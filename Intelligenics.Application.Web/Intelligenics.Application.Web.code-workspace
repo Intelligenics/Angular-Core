@@ -11,6 +11,15 @@
 		}
 	],
 	"settings": {
-		"git.ignoreLimitWarning": true
+		"git.ignoreLimitWarning": true,
+		"typescript.preferences.renameShorthandProperties": false,
+		"typescript.reportStyleChecksAsWarnings": false,
+		"typescript.suggest.autoImports": false,
+		"typescript.suggest.completeJSDocs": false,
+		"typescript.suggest.enabled": false,
+		"typescript.suggest.includeAutomaticOptionalChainCompletions": false,
+		"typescript.suggest.paths": false,
+		"typescript.suggestionActions.enabled": false,
+		"typescript.surveys.enabled": false
 	}
 }
