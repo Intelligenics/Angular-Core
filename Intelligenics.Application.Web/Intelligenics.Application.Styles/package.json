@@ -6,7 +6,7 @@
     "build": "ng build",
     "build-library": "npm run build module",
     "pre-publish": "npm run build module && ng run module:deploy",
-    "publish": "npm run build &&  cd projects/module && npm publish --access public"
+    "publish": "npm run pre-publish &&  cd dist/module && npm publish --access public"
   },
   "keywords": [
     "angular",
