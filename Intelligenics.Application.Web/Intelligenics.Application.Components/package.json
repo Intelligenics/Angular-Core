@@ -1,6 +1,6 @@
 {
   "name": "@intelligenics/application-components",
-  "version": "1.0.14",
+  "version": "1.0.19",
   "license": "MIT",
   "scripts": {
     "serve": "ng serve",

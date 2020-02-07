@@ -26,33 +26,25 @@
 ///
 //////////////////////////////////////////////////////////////////////////
 
-
 int-app-about,
-:host
-{
+:host {
   max-width: 500px;
   display: block;
 }
 
-
-.int-app-about
-{
+.int-app-about {
   max-width: 500px;
   display: block;
 
-  &__version
-  {
+  &__version {
     margin-bottom: 1rem;
   }
 
-
-  &__disclaimer
-  {
+  &__disclaimer {
     white-space: pre-line;
   }
 
-  &__buttons
-  {
-    text-align: right; 
+  &__buttons {
+    text-align: right;
   }
 }

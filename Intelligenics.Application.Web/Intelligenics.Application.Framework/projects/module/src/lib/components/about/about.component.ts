@@ -33,7 +33,7 @@ import { Subscription } from 'rxjs';
 @Component( {
     encapsulation: ViewEncapsulation.None,
     selector: 'int-app-about',
-    styleUrls: ['about.component.scss'],
+    styleUrls: [ 'about.component.scss' ],
     templateUrl: 'about.component.html'
 } )
 export class AboutComponent
@@ -71,6 +71,6 @@ export class AboutComponent
      */
     public onCloseClicked(): void
     {
-        this.router.navigate( [{ outlets: { dialog: null } }] );
+        this.router.navigate( [ { outlets: { dialog: null } } ] );
     }
 }
