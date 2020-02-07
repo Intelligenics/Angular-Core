@@ -25,7 +25,7 @@ This framework creates a hosting html framework through angular routing, to post
 In your Angular 8+ project directory open a command line and run the following command 
 
 ```
-npm i @intelligenics/application-framework
+npm i @intelligenics/application-framework 
 ```
 
 In your main application NgModule 
