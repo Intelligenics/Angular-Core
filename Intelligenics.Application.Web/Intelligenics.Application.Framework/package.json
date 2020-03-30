@@ -1,7 +1,7 @@
 {
   "name": "@intelligenics/application-framework",
   "license": "MIT",
-  "version": "2.0.20",
+  "version": "2.0.21",
   "author": {
     "name": "Intelligenics Ltd."
   },
@@ -30,6 +30,7 @@
     "@angular/compiler": "~8.2.11",
     "@angular/core": "~8.2.11",
     "@angular/forms": "~8.2.11",
+    "@angular/material": "^8.2.3",
     "@angular/platform-browser": "~8.2.11",
     "@angular/platform-browser-dynamic": "~8.2.11",
     "@angular/router": "~8.2.11",
@@ -45,7 +46,7 @@
     "@angular/language-service": "~8.2.11",
     "@fortawesome/fontawesome-free": "^5.11.2",
     "@intelligenics/angular-devkit": "^1.0.35",
-    "@intelligenics/application-styles": "latest",
+    "@intelligenics/application-styles": "^2.0.23",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
