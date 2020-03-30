@@ -220,7 +220,7 @@ Step1. Import the error service.
 
 ```
 
-Step 2. Now add the error service to your constructor and handle the error as neeeded. Please note if you do not unsubscribe from the event all errors will be handled by you directly everybody's errors will be cancelled. Make sure you understand the . 
+Step 2. Now add the error service to your constructor and handle the error as neeeded. Please note if you do not unsubscribe from the event all errors will be handled by your code directly and everybody's errors will be cancelled. Make sure you understand the implications of the this. 
 
 ```
 constructor(private readonly errorService:ErrorService)
