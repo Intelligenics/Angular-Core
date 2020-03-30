@@ -159,7 +159,7 @@ body
 }
 ```
 
-Your will also need a settings file that called settings.json to be output to your assets folder when deployed. This must be hosted under the root folder as assets/settings.json. In production you should enable secury by setting isEnabled to true. This application assumes you will be using SSO to acquire a token. This is maintained as a cookie on the main application. You must ensure your cookie is available to this domain also to function correctly. 
+Your will also need a settings file that is called settings.json to be output to your assets folder when deployed. This must be hosted under the root folder as assets/settings.json. In production you should enable security by setting isEnabled to true. This application assumes you will be using SSO to acquire a token. This is maintained as a cookie on the main application. You must ensure your cookie is available to this domain also to function correctly. 
 
 ```
 {
