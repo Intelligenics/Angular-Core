@@ -2,7 +2,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FrameworkModule } from '../../../module/src/lib/framework.module';
-import { FrameworkModule } from '@intelligenics/application-framework';
 
 import { AppRouting } from './test-harness.routing';
 import { AppComponent } from './components/app.component';
@@ -28,5 +27,5 @@ import { AppComponent } from './components/app.component';
       [
         AppComponent
       ]
-  } )
+  })
 export class AppModule { }

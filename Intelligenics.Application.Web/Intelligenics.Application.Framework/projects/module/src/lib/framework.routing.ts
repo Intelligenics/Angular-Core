@@ -26,7 +26,7 @@
 ///
 //////////////////////////////////////////////////////////////////////////
 
-import { Routes } from "@angular/router";
+import { Routes, ROUTES } from "@angular/router";
 import { Subject } from "rxjs";
 import { AboutComponent } from "./components/about/about.component";
 import { DialogComponent } from "./components/dialog/dialog.component";
@@ -171,4 +171,6 @@ export class SidebarRoutes
     {
         AppSidebarRoutes[pos].children.push( ...routes );
     }
-}
+} 
+
+export const FrameworkRoutes:Routes =[];
