@@ -2,7 +2,7 @@
   "authentication":
   {
     "isEnabled": false,
-    "authenticationCookie": "IgniusXDT",
-    "authenticationUrl": "http://signin.ignius.cloud"
+    "authenticationCookie": "ApplicationCookieName",
+    "authenticationUrl": "http://signin.yoursite.com"
   }
 }

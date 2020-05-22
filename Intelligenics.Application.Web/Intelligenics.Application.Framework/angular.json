@@ -24,17 +24,36 @@
             "tsConfig": "projects/test-harness/tsconfig.app.json",
             "aot": false,
             "assets": [
-              "projects/test-harness/src/assets/settings.json",
-              "projects/test-harness/src/favicon.ico"
+              "projects/test-harness/src/favicon.ico",
+              "projects/test-harness/src/assets",
+              {
+                "glob": "**/*",
+                "input": "./projects/module/assets",
+                "output": "./assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "./node_modules/@intelligenics/application-styles/assets",
+                "output": "./assets"
+              },
+              {
+                "glob": "**/*",
+                "input": "./projects/module/css",
+                "output": "./css"
+              },
+              {
+                "glob": "./settings.json",
+                "input": "./",
+                "output": "./"
+              }
             ],
             "styles": [
-              "node_modules/bootstrap/scss/bootstrap.scss",
-              "node_modules/@intelligenics/application-styles/css/main.scss"
+              "projects/test-harness/src/styles.scss"
             ],
             "stylePreprocessorOptions": {
               "includePaths": [
-                "projects/test-harness/src/styles",
-                "node_modules/@intelligenics/application-styles/css"
+                "node_modules/@intelligenics/application-styles/css",
+                "node_modules/bootstrap/scss/bootstrap.scss"
               ]
             },
             "scripts": []
@@ -103,6 +122,12 @@
             "styles": [
               "projects/test-harness/src/styles.scss"
             ],
+            "stylePreprocessorOptions": {
+              "includePaths": [
+                "node_modules/@intelligenics/application-styles/css",
+                "node_modules/bootstrap/scss/bootstrap.scss"
+              ]
+            },
             "scripts": []
           }
         },
@@ -122,7 +147,7 @@
         "e2e": {
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
-            "protractorConfig": "projects/test-harness/e2e/protractor.conf.js",
+            "protractorConfig": "projects/module/e2e/protractor.conf.js",
             "devServerTarget": "test-harness:serve"
           },
           "configurations": {
@@ -142,9 +167,15 @@
         "deploy": {
           "builder": "@intelligenics/angular-devkit:deploy-assets",
           "options": {
-            "files": [
-              "license.txt",
-              "README.md"
+            "assets": [
+              {
+                "source": "./projects/module/assets/**/*",
+                "dest": "./dist/module/assets"
+              },
+              {
+                "source": "./projects/module/css/**/*",
+                "dest": "./dist/module/css"
+              }
             ]
           }
         },
