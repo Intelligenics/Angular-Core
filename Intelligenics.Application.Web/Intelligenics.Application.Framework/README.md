@@ -159,7 +159,7 @@ body
 }
 ```
 
-Your will also need a settings file that called settings.json to be output to your assets folder when deployed. This must be hosted under the root folder as assets/settings.json. In production you should enable secury by setting isEnabled to true. This application assumes you will be using SSO to acquire a token. This is maintained as a cookie on the main application. You must ensure your cookie is available to this domain also to function correctly. 
+Your will also need a settings file that is called settings.json to be output to your assets folder when deployed. This must be hosted under the root folder as assets/settings.json. In production you should enable security by setting isEnabled to true. This application assumes you will be using SSO to acquire a token. This is maintained as a cookie on the main application. You must ensure your cookie is available to this domain also to function correctly. 
 
 ```
 {
@@ -200,25 +200,27 @@ These allow for the framework to automatically guard secured routes and inject y
 ## Error handling
 As long as your are using HttpClient the system will automatically intercept any API errors. To conform with the application correctly your API must present errors to the application as recommended by Angular. Angular uses a HttpErrorResponse which has an error property. This must be passed in the body of any error message. The framework will automically access this and show the error in the snackbar. 
 
-The system will also automatically queue errors should they get backed up and show then every 3 seconds clearing the queue as it goes.
+The system will also automatically queue errors should they get backed up and show them every 3 seconds clearing the queue as it goes.
 
-Error messages
+### Error messages
 
 - 200 - will have no response and treated as successful 
 - 400 errors are treated as validation errors and by default shown in the snackbar.  
 - 401 will automatically redirect to the signin page if authentication has been enabled
 - All other errors above 401 are treated a system failures and show in the snackbar by default
 
+### Custom Error Handling
 
+If you wish to prevent the default snackbar being used to show an error you can do so. 
 
-If you wish to prevent the default snackbar being used to show an error you can do so. Import the error service
+Step1. Import the error service.
 
 ```
 @import {ErrorService,HttpErrorEventArgs} from '@intelligenics/application-framework';
 
 ```
 
-add the error service to your constructor and handle the error as neeeded. Please note if you do not unsubscribe from the event all 400 errors will be handled by you directly. 
+Step 2. Now add the error service to your constructor and handle the error as neeeded. Please note if you do not unsubscribe from the event all errors will be handled by your code directly and everybody's errors will be cancelled. Make sure you understand the implications of the this. 
 
 ```
 constructor(private readonly errorService:ErrorService)
@@ -226,7 +228,9 @@ constructor(private readonly errorService:ErrorService)
     let sub = errorService.httpErrorEvent.subscribe((args:HttpErrorEventArgs)=?
     { 
             args.handled = true;
-    });
+    }, 
+    null,
+    ()=>sub.unsubscribe())
 }
 ```
 

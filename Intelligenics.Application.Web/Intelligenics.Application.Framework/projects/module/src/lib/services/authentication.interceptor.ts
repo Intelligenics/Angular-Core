@@ -27,7 +27,7 @@
 //////////////////////////////////////////////////////////////////////////
 
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from "@angular/common/http";
-import { Injectable } from "@angular/core"; 
+import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { tap } from "rxjs/operators";
 import { AuthenticationService } from "./authentication.service";
@@ -46,17 +46,19 @@ export class AuthenticationInterceptor implements HttpInterceptor
 
     public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>
     {
+
+        // If authentication is disabled ignore the interception
+        if (!this.authenticationService.isEnabled)
+            return next.handle(request);
+
         let tokenRequest: HttpRequest<any> = request;
 
-        if (this.authenticationService.isEnabled)
-        {
-            tokenRequest = request.clone(
-                {
-                    setHeaders: {
-                        Authorization: `Bearer ${this.authenticationService.AuthenticationInfo.Token}`
-                    }
-                });
-        }
+        tokenRequest = request.clone(
+            {
+                setHeaders: {
+                    Authorization: `Bearer ${this.authenticationService.AuthenticationInfo.Token}`
+                }
+            });
 
         return next.handle(tokenRequest)
             .pipe(

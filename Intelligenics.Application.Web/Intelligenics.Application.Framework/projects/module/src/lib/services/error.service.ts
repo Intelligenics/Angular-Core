@@ -27,10 +27,10 @@
 //////////////////////////////////////////////////////////////////////////
 
 import { HttpErrorResponse } from "@angular/common/http";
-import { Injectable } from "@angular/core"; 
+import { Injectable } from "@angular/core";
 import { Subject } from "rxjs";
 import { HttpStatusCodes } from "../models/codes.model";
-import { HttpErrorEventArgs } from "../models/error.model"; 
+import { HttpErrorEventArgs } from "../models/error.model";
 import { SnackbarService } from './snackbar.service';
 import { ErrorConstants } from '../models/framework.constants';
 
@@ -57,18 +57,23 @@ export class ErrorService
      * @param err the error reported by the api
      */
     public notifyHttpError(err: HttpErrorResponse): void
-    {  
+    {
+        // Tell any subscribers about the error
         const args: HttpErrorEventArgs = new HttpErrorEventArgs(err);
-        this.httpErrorEvent.next(args);
+        this.httpErrorEvent.next(args); 
 
+        // If handled already we will do nothing
+        if (args.handled)
+            return;
+
+        
+        // Show a snackbar error instead
         switch (err.status)
         {
             case HttpStatusCodes.Zero:
                 this.snackbarService.error(err.message);
                 break;
             case HttpStatusCodes.BadRequest:
-                if (args.handled)
-                    break;
                 this.snackbarService.warning(err.error);
                 break;
             case HttpStatusCodes.Unauthorised: // handled by authentication
