@@ -160,7 +160,8 @@ export class DialogService
                 state:
                 {
                     title,
-                    allowClose
+                    allowClose,
+                    data,
                 }
             });
     }
