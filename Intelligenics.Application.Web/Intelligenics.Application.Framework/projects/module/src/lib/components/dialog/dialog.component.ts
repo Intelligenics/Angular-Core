@@ -73,6 +73,7 @@ export class DialogComponent implements OnDestroy
                 this.message = navigation.extras.state.message;
                 this.dialogOptions = navigation.extras.state.dialogOptions;
                 this.messageType = navigation.extras.state.messageType;
+                this.activatedRoute.snapshot.data["dialogState"]= navigation.extras.state.data;
             }
         } ) );
 

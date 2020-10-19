@@ -1,12 +1,11 @@
 // Angular
-import { RouterModule } from '@angular/router'; 
-import { ApplicationRoutes as ApplicationFrameworkRoutes } from "@intelligenics/application-framework";
-import { FrameworkRoutes } from '../../../module/src/lib/framework.routing'; 
+import { RouterModule } from '@angular/router';  
+import { FrameworkRoutes, ApplicationRoutes } from '../../../module/src/lib/framework.routing'; 
 
 
-ApplicationFrameworkRoutes.append(  FrameworkRoutes );
+ApplicationRoutes.append(  FrameworkRoutes );
 
-export const AppRouting = RouterModule.forRoot(ApplicationFrameworkRoutes.AppRoutes,
+export const AppRouting = RouterModule.forRoot(ApplicationRoutes.AppRoutes,
     {
         // enableTracing: true
     });
