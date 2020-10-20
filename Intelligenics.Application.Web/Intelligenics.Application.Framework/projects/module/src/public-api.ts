@@ -37,3 +37,11 @@ export * from './lib/services/dialog.service';
 export * from './lib/services/sidebar.service';
 export * from './lib/services/snackbar.service';
 
+export { FrameworkComponent } from './lib/components/framework/framework.component';
+export { SnackbarComponent } from './lib/components/snackbar/snackbar.component';
+export { AlertComponent } from './lib/components/alert/alert.component';
+export { DialogComponent } from './lib/components/dialog/dialog.component';
+export { AboutComponent } from './lib/components/about/about.component';
+export { ProgressComponent } from './lib/components/progress/progress.component';
+export { LeftSideBarComponent, RightSideBarComponent, BottomSideBarComponent, TopSideBarComponent } from './lib/components/sidebar/sidebar.component';
+

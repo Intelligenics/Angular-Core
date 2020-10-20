@@ -5,9 +5,6 @@
 		},
 		{
 			"path": "Intelligenics.Application.Styles"
-		},
-		{
-			"path": "Intelligenics.Application.Components"
 		}
 	],
 	"settings": {

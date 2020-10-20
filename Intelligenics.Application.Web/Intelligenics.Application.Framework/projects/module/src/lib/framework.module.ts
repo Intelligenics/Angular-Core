@@ -26,23 +26,23 @@
 ///
 //////////////////////////////////////////////////////////////////////////
 
-
-import { CommonModule } from "@angular/common";
-import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { APP_INITIALIZER, NgModule } from "@angular/core";
-import { RouterModule } from "@angular/router";
+import { ApplicationService, applicationServiceFactory } from './services/application.service';
+import { BottomSideBarComponent, LeftSideBarComponent, RightSideBarComponent, TopSideBarComponent } from "./components/sidebar/sidebar.component";
+import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
+
 import { AboutComponent } from "./components/about/about.component";
 import { AlertComponent } from "./components/alert/alert.component";
-import { DialogComponent } from "./components/dialog/dialog.component";
-import { FrameworkComponent } from "./components/framework/framework.component";
-import { ProgressComponent } from './components/progress/progress.component';
-import { BottomSideBarComponent, LeftSideBarComponent, RightSideBarComponent, TopSideBarComponent } from "./components/sidebar/sidebar.component";
-import { SnackbarComponent } from "./components/snackbar/snackbar.component";
-import { ApplicationService, applicationServiceFactory } from './services/application.service';
-import { AuthenticationService } from './services/authentication.service';
-import { ErrorInterceptor } from "./services/error.interceptor";
-import { LoadingInterceptor } from "./services/loading.interceptor";
 import { AuthenticationInterceptor } from "./services/authentication.interceptor";
+import { AuthenticationService } from './services/authentication.service';
+import { CommonModule } from "@angular/common";
+import { DialogComponent } from "./components/dialog/dialog.component";
+import { ErrorInterceptor } from "./services/error.interceptor";
+import { FrameworkComponent } from "./components/framework/framework.component";
+import { LoadingInterceptor } from "./services/loading.interceptor";
+import { ProgressComponent } from './components/progress/progress.component';
+import { RouterModule } from "@angular/router";
+import { SnackbarComponent } from "./components/snackbar/snackbar.component";
 
 /**
  * This module contains all the components needed by the application to function
@@ -66,7 +66,7 @@ import { AuthenticationInterceptor } from "./services/authentication.interceptor
             AlertComponent,
             DialogComponent,
             AboutComponent,
-            ProgressComponent,
+            ProgressComponent,            
         ],
     declarations:
         [

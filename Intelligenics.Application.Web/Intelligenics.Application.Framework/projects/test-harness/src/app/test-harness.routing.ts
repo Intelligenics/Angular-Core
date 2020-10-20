@@ -1,7 +1,8 @@
 // Angular
-import { RouterModule } from '@angular/router';  
-import { FrameworkRoutes, ApplicationRoutes } from '../../../module/src/lib/framework.routing'; 
 
+import { ApplicationRoutes, FrameworkRoutes } from '../../../module/src/lib/framework.routing';
+
+import { RouterModule } from '@angular/router';
 
 ApplicationRoutes.append(  FrameworkRoutes );
 
