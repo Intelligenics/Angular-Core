@@ -66,7 +66,7 @@ import { SnackbarComponent } from "./components/snackbar/snackbar.component";
             AlertComponent,
             DialogComponent,
             AboutComponent,
-            ProgressComponent,            
+            ProgressComponent,
         ],
     declarations:
         [
@@ -84,8 +84,12 @@ import { SnackbarComponent } from "./components/snackbar/snackbar.component";
     providers:
         [
             ApplicationService,
-            { provide: APP_INITIALIZER, useFactory: applicationServiceFactory, deps: [ApplicationService], multi: true },
-           
+            {
+                provide: APP_INITIALIZER,
+                useFactory: applicationServiceFactory,
+                deps: [ApplicationService], 
+                multi: true
+            }, 
             AuthenticationService,
             {
                 multi: true,
@@ -101,8 +105,8 @@ import { SnackbarComponent } from "./components/snackbar/snackbar.component";
                 provide: HTTP_INTERCEPTORS,
                 useClass: AuthenticationInterceptor,
                 multi: true,
-                deps: [ApplicationService]
-            }, 
+                deps: [AuthenticationService]
+            },
         ]
 })
 export class FrameworkModule { }
