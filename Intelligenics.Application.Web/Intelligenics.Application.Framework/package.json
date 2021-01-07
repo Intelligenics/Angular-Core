@@ -1,7 +1,7 @@
 {
   "name": "@intelligenics/application-framework",
   "license": "MIT",
-  "version": "2.0.29",
+  "version": "2.0.31",
   "author": {
     "name": "Intelligenics Ltd."
   },
@@ -20,8 +20,8 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "build-library": "npm run build module ",
-    "pre-publish": "npm run build module && ng run module:deploy",
+    "build-library": "ng build module --prod",
+    "pre-publish": "ng build module --prod && ng run module:deploy",
     "pack": "cd dist/module && npm pack",
     "publish": "cd dist/module && npm publish --access public"
   },

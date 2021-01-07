@@ -28,7 +28,7 @@
 
 import { APP_INITIALIZER, NgModule } from "@angular/core";
 import { ApplicationService, applicationServiceFactory } from './services/application.service';
-import { BottomSideBarComponent, LeftSideBarComponent, RightSideBarComponent, TopSideBarComponent } from "./components/sidebar/sidebar.component";
+import { BottomSideBarComponent, LeftSideBarComponent, RightSideBarComponent, SidebarComponent, TopSideBarComponent } from "./components/sidebar/sidebar.component";
 import { HTTP_INTERCEPTORS, HttpClientModule } from "@angular/common/http";
 
 import { AboutComponent } from "./components/about/about.component";
@@ -66,7 +66,7 @@ import { SnackbarComponent } from "./components/snackbar/snackbar.component";
             AlertComponent,
             DialogComponent,
             AboutComponent,
-            ProgressComponent,
+            ProgressComponent, 
         ],
     declarations:
         [
@@ -79,7 +79,7 @@ import { SnackbarComponent } from "./components/snackbar/snackbar.component";
             AlertComponent,
             DialogComponent,
             AboutComponent,
-            ProgressComponent,
+            ProgressComponent, 
         ],
     providers:
         [

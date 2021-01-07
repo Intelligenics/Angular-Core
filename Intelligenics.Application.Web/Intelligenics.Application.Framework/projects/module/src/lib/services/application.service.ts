@@ -45,9 +45,7 @@ export function applicationServiceFactory(applicationService: ApplicationService
 
 
 /**
- * The authentication service provides consumers with information
- * about the current user. It also handles various login, logout
- * behaviours for the site.
+ * Base service loads main settings config
  */
 @Injectable()
 export class ApplicationService

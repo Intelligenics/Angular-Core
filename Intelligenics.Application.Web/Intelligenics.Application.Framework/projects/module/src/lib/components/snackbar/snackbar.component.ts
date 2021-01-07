@@ -26,37 +26,39 @@
 ///
 //////////////////////////////////////////////////////////////////////////
 
-import { animate, state, style, transition, trigger } from '@angular/animations';
 import { ChangeDetectionStrategy, ChangeDetectorRef, Component, ViewEncapsulation } from '@angular/core';
-import { FrameworkConstants } from '../../models/framework.constants';
 import { SnackbarEventArgs, SnackbarMessageType, SnackbarService } from '../../services/snackbar.service';
+import { animate, state, style, transition, trigger } from '@angular/animations';
+
+import { ApplicationService } from '../../services/application.service';
+import { FrameworkConstants } from '../../models/framework.constants';
 
 /** Snackbar component. */
-@Component( {
+@Component({
     animations:
         [
             trigger(
                 'slideInOut',
                 [
-                    state( 'in',
-                           style( {
+                    state('in',
+                        style({
                             opacity: 1,
                             transform: 'scale(1)'
-                        } ) ),
-                    state( 'out', style( {
+                        })),
+                    state('out', style({
                         opacity: 0,
                         transform: 'scale(0)'
-                    } ) ),
-                    transition( 'in => out', animate( '400ms ease-in-out' ) ),
-                    transition( 'out => in', animate( '400ms ease-in-out' ) ),
-                ] ),
+                    })),
+                    transition('in => out', animate('400ms ease-in-out')),
+                    transition('out => in', animate('400ms ease-in-out')),
+                ]),
         ],
-    changeDetection: ChangeDetectionStrategy.OnPush,  
+    changeDetection: ChangeDetectionStrategy.OnPush,
     selector: 'int-app-snackbar',
     styleUrls: ['snackbar.component.scss'],
     encapsulation: ViewEncapsulation.None,
     templateUrl: 'snackbar.component.html'
-} )
+})
 export class SnackbarComponent
 {
     /** Menu state */
@@ -77,19 +79,27 @@ export class SnackbarComponent
 
     private timeOut: any;
 
+    private timeOutInterval: number;
+
     constructor(
         private readonly snackbarService: SnackbarService,
-        private readonly changeDetectorRef: ChangeDetectorRef )
+        private readonly applicationService: ApplicationService,
+        private readonly changeDetectorRef: ChangeDetectorRef)
     {
         this.state = FrameworkConstants.OUT;
         this.messages = [];
 
+        this.timeOutInterval = FrameworkConstants.TIMEOUTINTERVAL;
+
+        if (this.applicationService.settings.messageTimeoutInterval)
+            this.timeOutInterval = this.applicationService.settings.messageTimeoutInterval;
+
         this.snackbarService.newMessageEvent
-            .subscribe( ( message: SnackbarEventArgs ) =>
+            .subscribe((message: SnackbarEventArgs) =>
             {
-                this.messages.unshift( message );
+                this.messages.unshift(message);
                 this.processMessageQueue();
-            } );
+            });
     }
 
     /**
@@ -97,50 +107,50 @@ export class SnackbarComponent
      * @param message Message to show.
      * @param messageType Message type.
      */
-    public show( message: SnackbarEventArgs ): void
+    public show(message: SnackbarEventArgs): void
     {
         this.state = FrameworkConstants.IN;
         this.message = message.message;
         this.messageType = message.messageType;
         this.changeDetectorRef.detectChanges();
 
-        if ( null != this.timeOut )
-            clearTimeout( this.timeOut );
+        if (null != this.timeOut)
+            clearTimeout(this.timeOut);
 
         this.timeOut = setTimeout(
             () =>
             {
-                console.log( this.state );
+                console.log(this.state);
                 this.state = FrameworkConstants.OUT;
                 this.changeDetectorRef.detectChanges();
             },
-            FrameworkConstants.TIMEOUTINTERVAL );
+            this.timeOutInterval);
     }
 
     private processMessageQueue(): void
     {
-        if ( null != this.messageInterval )
+        if (null != this.messageInterval)
             return;
 
         const message: SnackbarEventArgs = this.messages.pop();
-        this.show( message );
+        this.show(message);
 
         this.messageInterval = setInterval(
             () =>
             {
                 // If we have not message left in the queue then stop the message
                 // queue processes
-                if ( this.messages.length == 0 )
+                if (this.messages.length == 0)
                 {
-                    clearInterval( this.messageInterval );
+                    clearInterval(this.messageInterval);
                     this.messageInterval = null;
                     return;
                 }
 
                 const message: SnackbarEventArgs = this.messages.pop();
-                this.show( message );
+                this.show(message);
 
             },
-            FrameworkConstants.MESSAGEINTERVAL );
+            FrameworkConstants.MESSAGEINTERVAL);
     }
 }

@@ -32,6 +32,8 @@
  */
 export * from './lib/framework.module';
 export * from './lib/framework.routing';
+export { ApplicationService } from './lib/services/application.service';
+export { AuthenticationService } from './lib/services/authentication.service';
 export * from './lib/services/error.service';
 export * from './lib/services/dialog.service';
 export * from './lib/services/sidebar.service';

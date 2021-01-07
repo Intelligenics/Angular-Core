@@ -34,10 +34,6 @@ import { bottomSidebarOpenClose, leftSidebarOpenClose, rightSidebarOpenClose, to
 import { FrameworkConstants } from '../../models/framework.constants';
 import { Subscription } from 'rxjs';
 
-@Component( {
-    selector: "int-app-sidebar",
-    template: '<h1>base class only</h1>', 
-} )
 export class SidebarComponent implements OnDestroy
 {
     public state: string;

@@ -66,6 +66,14 @@ export class AuthenticationService
         return true;
     }
 
+
+    public signOut():void
+    {  
+        let cookie =  `${this.applicationService.settings.authentication.authenticationCookie}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        document.cookie = cookie;
+        document.location.href = this.applicationService.settings.authentication.authenticationUrl;
+    }
+
     /**
      * gets the authenticaion information from cookies
      */

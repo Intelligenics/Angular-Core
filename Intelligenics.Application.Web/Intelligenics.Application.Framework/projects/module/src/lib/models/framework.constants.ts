@@ -30,7 +30,7 @@ export class FrameworkConstants
 {
     public static readonly MESSAGEINTERVAL: number = 4000;
 
-    public static readonly TIMEOUTINTERVAL: number = 2000;
+    public static readonly TIMEOUTINTERVAL: number = 4000;
 
     public static readonly SIDEBARTIMEOUT: number = 400;
 
