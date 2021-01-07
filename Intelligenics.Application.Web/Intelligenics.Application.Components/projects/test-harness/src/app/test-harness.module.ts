@@ -6,14 +6,12 @@ import { FrameworkModule } from '@intelligenics/application-framework';
 
 import { AppRouting } from './test-harness.routing';
 import { AppComponent } from './components/app.component';
-import { TestComponent } from './components/test/test.component';
 
 @NgModule(
   {
     declarations:
       [
         AppComponent,
-        TestComponent,
       ],
     imports:
       [

@@ -2,12 +2,6 @@
 	"folders": [
 		{
 			"path": "Intelligenics.Application.Framework"
-		},
-		{
-			"path": "Intelligenics.Application.Styles"
-		},
-		{
-			"path": "Intelligenics.Application.Components"
 		}
 	],
 	"settings": {

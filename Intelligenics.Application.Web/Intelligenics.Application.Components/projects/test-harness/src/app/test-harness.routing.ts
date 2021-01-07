@@ -1,27 +1,12 @@
 // Angular
 import { RouterModule } from '@angular/router'; 
-import { ApplicationRoutes } from "@intelligenics/application-framework";
-import { ComponentsRoutes } from '../../../module/src/lib/components.routing';
-import { TestComponent } from './components/test/test.component';
+import { ApplicationRoutes as ApplicationFrameworkRoutes } from "@intelligenics/application-framework";
+import { ComponentsRoutes } from '../../../module/src/lib/components.routing'; 
 
 
-ApplicationRoutes.prepend(
-    [
-        // Primary Routes
-        {
-            path: '',
-            children:
-                [
-                    {
-                        path: '',
-                        component:TestComponent
-                    }
-                ]
-        }
-    ])
+ApplicationFrameworkRoutes.append(  ComponentsRoutes );
 
-
-export const AppRouting = RouterModule.forRoot(ApplicationRoutes.AppRoutes,
+export const AppRouting = RouterModule.forRoot(ApplicationFrameworkRoutes.AppRoutes,
     {
         // enableTracing: true
     });

@@ -26,29 +26,26 @@
 ///
 //////////////////////////////////////////////////////////////////////////
 
-import { Injectable } from "@angular/core";
-import { AuthenticationInfo, IAuthenticationSettings } from "../models/authentication.model";
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { APIConstants } from '../models/framework.constants';
-import { map } from 'rxjs/operators';
+import { Observable, forkJoin } from 'rxjs';
+import { catchError, tap } from 'rxjs/operators';
 
+import { APIConstants } from '../models/framework.constants';
+import { HttpClient } from '@angular/common/http';
+import { Injectable } from "@angular/core";
+import { of } from 'rxjs';
 
 /**
  * This class generates the application service and allows it to load
  * @param applicationService
  */
-export function applicationServiceFactory( applicationService: ApplicationService )
+export function applicationServiceFactory(applicationService: ApplicationService)
 {
-    let x = () => applicationService.load();
-    return x;
+    return () => applicationService.loadConfig().toPromise();
 }
 
 
 /**
- * The authentication service provides consumers with information
- * about the current user. It also handles various login, logout
- * behaviours for the site.
+ * Base service loads main settings config
  */
 @Injectable()
 export class ApplicationService
@@ -64,17 +61,20 @@ export class ApplicationService
         return this._settings;
     }
 
-    public load(): Promise<any>
+    public loadConfig(): Observable<any>
     {
-        return new Promise((resolve) =>
-        {
-            return this.http
-                .get(APIConstants.SettingsUrl)
-                .subscribe((response: any) =>
+        return this.http
+            .get(APIConstants.SettingsUrl)
+            .pipe(
+                tap((settings) =>
                 {
-                    this._settings = response;
-                    resolve(true);
-                });
-        });
+                    this._settings = settings;
+                }),
+                catchError(err =>
+                {
+                    console.log('ERROR getting config data', err);
+                    throw(err || 'Server error while getting environment');
+                })
+            )
     }
 }

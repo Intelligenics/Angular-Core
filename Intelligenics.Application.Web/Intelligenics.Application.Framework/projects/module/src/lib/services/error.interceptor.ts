@@ -25,11 +25,13 @@
 /// Email: matthewparton@intelligenics.co.uk
 ///
 //////////////////////////////////////////////////////////////////////////
+
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from '@angular/common/http';
+
+import { ErrorService } from './error.service';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
-import { ErrorService } from './error.service';
 
 /**
  * Providers default error handling ability for api errors

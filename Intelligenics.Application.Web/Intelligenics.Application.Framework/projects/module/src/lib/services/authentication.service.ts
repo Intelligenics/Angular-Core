@@ -26,11 +26,10 @@
 ///
 //////////////////////////////////////////////////////////////////////////
 
-import { Injectable } from "@angular/core";
 import { AuthenticationInfo, IAuthenticationSettings } from "../models/authentication.model";
+
 import { ApplicationService } from './application.service';
-
-
+import { Injectable } from "@angular/core";
 
 /**
  * The authentication service provides consumers with information
@@ -39,15 +38,10 @@ import { ApplicationService } from './application.service';
  */
 @Injectable()
 export class AuthenticationService
-{
-    private settings: IAuthenticationSettings;
+{ 
 
     constructor(private readonly applicationService: ApplicationService)
-    {
-        if (null == applicationService.settings || null == applicationService.settings.authentication)
-            throw "unable to retrieve application settings";
-
-        this.settings = <IAuthenticationSettings>applicationService.settings.authentication;
+    { 
     }
 
     /**
@@ -55,7 +49,7 @@ export class AuthenticationService
      */
     public get isEnabled(): boolean
     {
-        return this.settings.isEnabled
+        return this.applicationService.settings.authentication.isEnabled
     };
 
     /**
@@ -72,19 +66,27 @@ export class AuthenticationService
         return true;
     }
 
+
+    public signOut():void
+    {  
+        let cookie =  `${this.applicationService.settings.authentication.authenticationCookie}=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;`;
+        document.cookie = cookie;
+        document.location.href = this.applicationService.settings.authentication.authenticationUrl;
+    }
+
     /**
      * gets the authenticaion information from cookies
      */
     public get AuthenticationInfo(): AuthenticationInfo
     {
         const info: AuthenticationInfo = new AuthenticationInfo();
-        info.Token = this.readCookie(this.settings.authenticationCookie);
+        info.Token = this.readCookie(this.applicationService.settings.authentication.authenticationCookie);
         return info;
     }
 
     public navigateToSignIn(): void
     {
-        document.location.href = this.settings.authenticationUrl;
+        document.location.href = this.applicationService.settings.authentication.authenticationUrl;
     }
 
     private readCookie(name: string)

@@ -27,11 +27,13 @@
 //////////////////////////////////////////////////////////////////////////
 
 import { HttpErrorResponse, HttpEvent, HttpHandler, HttpInterceptor, HttpRequest, HttpResponse } from "@angular/common/http";
+
+import { APIConstants } from "../models/framework.constants";
+import { AuthenticationService } from "./authentication.service";
+import { HttpStatusCodes } from '../models/codes.model';
 import { Injectable } from "@angular/core";
 import { Observable } from "rxjs";
 import { tap } from "rxjs/operators";
-import { AuthenticationService } from "./authentication.service";
-import { HttpStatusCodes } from '../models/codes.model';
 
 /**
  * Authentication interceptor listens for 401 errors and manages the response
@@ -41,11 +43,13 @@ import { HttpStatusCodes } from '../models/codes.model';
 export class AuthenticationInterceptor implements HttpInterceptor
 {
     constructor(private readonly authenticationService: AuthenticationService)
-    {
+    { 
     }
 
     public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>>
-    {
+    { 
+        if (request.url == APIConstants.SettingsUrl)
+            return next.handle(request);
 
         // If authentication is disabled ignore the interception
         if (!this.authenticationService.isEnabled)
