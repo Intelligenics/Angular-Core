@@ -175,6 +175,9 @@
           "configurations": {
             "production": {
               "tsConfig": "projects/module/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/module/tsconfig.lib.json"
             }
           },
           "defaultConfiguration": "production"
