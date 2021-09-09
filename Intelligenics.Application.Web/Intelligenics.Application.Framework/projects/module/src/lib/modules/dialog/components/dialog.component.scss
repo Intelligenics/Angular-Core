@@ -1,0 +1,44 @@
+ 
+ 
+.int-dialog
+{ 
+    position: fixed; 
+    top:0;
+    right:0;
+    left:0;
+    bottom:0;
+    z-index: 0;
+
+    .fa-times
+    {
+      font-weight: 600;
+    }
+
+    .backdrop
+    {
+      position: fixed;
+      pointer-events: auto;
+      z-index: 1000;
+      background-color: black;
+      border-radius: 0.2; 
+      user-select: none; 
+      overflow: hidden; 
+    }
+
+    .window
+    {
+      position: absolute;
+      top:100%;
+      right:0;
+      left:0;
+      bottom:-100%; 
+      opacity: 0;
+      pointer-events: auto;
+      z-index: 1000;
+      background-color: lightgrey;
+      border-radius: 0.2; 
+      user-select: none; 
+      overflow: hidden;
+      margin:0rem;
+    } 
+}

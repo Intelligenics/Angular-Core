@@ -1,0 +1,67 @@
+
+$alert-background: var(--int-alert-background, lighten(black,10%));
+$alert-border-radius: var(--int-alert-border-radius, 0.3rem);
+$alert-color: var(--int-alert-color, black);
+$alert-shadow: var(--int-alert-shadow, 0.1rem 0.1rem 0.1rem 0.1rem lighten(black,30%));
+$alert-backdrop-background: var(--int-alert-backdrop-background, black);
+$alert-error: var(--int-alert-error, red);
+$alert-warning: var(--int-alert-warning, orange);
+$alert-info: var(--int-alert-info, navy);
+
+
+int-alert,
+:host
+{
+  display: block;
+  padding-top: 1rem;
+  padding-bottom: 1rem;
+  color: $alert-color;
+}
+
+
+
+.int-alert
+{
+  &__indicator
+  {
+    text-align: center;
+
+
+
+    .fa-info-circle,
+    .fa-exclamation-circle,
+    .fa-question-circle,
+    .fa-exclamation-triangle
+    {
+      font-size: 3rem;
+    }
+
+    .fa-exclamation-circle
+    {
+      color: $alert-error;
+    }
+
+    .fa-exclamation-triangle
+    {
+      color: $alert-warning;
+    }
+
+    .fa-question-circle
+    {
+      color: $alert-info;
+    }
+
+    .fa-info-circle
+    {
+      color: $alert-info;
+    }
+  }
+
+  &__buttons
+  {
+    .btn
+    {
+      margin-right: 1rem;
+    }
+  }
+}

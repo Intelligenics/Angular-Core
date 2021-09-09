@@ -1,0 +1,18 @@
+<div class="backdrop" [@backdropOpenClose]="state"></div>
+<div class="window" [@dialogOpenClose]="state">
+  <div class="container-fluid">
+    <div class="row align-items-center">
+      <div class="col">
+        <div class="int-dialog-title__text">{{title}}</div>
+      </div>
+      <div *ngIf="allowClose" class="col-1 text-right">
+        <button class="btn btn-link btn-dark " (click)="onDialogCloseClicked()">
+          <i class="fas fa-times fa-1x"></i>
+        </button>
+      </div>
+    </div>
+    <div class="int-dialog__content">
+      <ng-template #dynamic></ng-template>
+    </div>
+  </div>
+</div>
