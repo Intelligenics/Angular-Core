@@ -26,59 +26,48 @@
 ///
 //////////////////////////////////////////////////////////////////////////
 
-import { Observable, forkJoin } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
-
-import { APIConstants } from '../models/framework.constants';
-import { HttpClient } from '@angular/common/http';
 import { Injectable } from "@angular/core";
-import { Router } from '@angular/router';
-import { ApplicationRoutes } from '../framework.routing';
-
-/**
- * This class generates the application service and allows it to load
- * @param applicationService
- */
-export function applicationServiceFactory(applicationService: ApplicationService)
+import { Subject } from "rxjs";
+import { SnackbarEventArgs, SnackbarMessageType } from "../models/snackbar.models";
+ 
+/** Snackbar service. */
+@Injectable({ providedIn: "root" })
+export class SnackbarService
 {
-    return () => applicationService.loadConfig().toPromise();
-}
+    /**
+     * Snackbar closed event used to track changes in the snackbar window
+     */
+    public newMessageEvent: Subject<SnackbarEventArgs>; 
 
-
-/**
- * Base service loads main settings config
- */
-@Injectable()
-export class ApplicationService
-{
-    private _settings: any;
-
-    constructor(private http: HttpClient, private router: Router)
+    constructor()
     {
-
+        this.newMessageEvent = new Subject<SnackbarEventArgs>(); 
     }
 
-    public get settings()
+    /**
+     * Information message.
+     * @param message Snackbar message type.
+     */
+    public info(message: string): void
     {
-        return this._settings;
+        this.newMessageEvent.next(new SnackbarEventArgs(message, SnackbarMessageType.Info));
     }
 
-    public loadConfig(): Observable<any>
+    /**
+     * Warning message.
+     * @param message Message to display.
+     */
+    public warning(message: string): void
     {
-        return this.http
-            .get(APIConstants.SettingsUrl)
-            .pipe(
-                tap((settings) =>
-                {
-                    this._settings = settings;
-
-                    //ApplicationRoutes.initialise();
-                }),
-                catchError(err =>
-                {
-                    console.log('ERROR getting config data', err);
-                    throw (err || 'Server error while getting environment');
-                })
-            )
+        this.newMessageEvent.next(new SnackbarEventArgs(message, SnackbarMessageType.Warning));
     }
+
+    /**
+     * Error message.
+     * @param message Message to display.
+     */
+    public error(message: string): void
+    {
+        this.newMessageEvent.next(new SnackbarEventArgs(message, SnackbarMessageType.Error));
+    } 
 }

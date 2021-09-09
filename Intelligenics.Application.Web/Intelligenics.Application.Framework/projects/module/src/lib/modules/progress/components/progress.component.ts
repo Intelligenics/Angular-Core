@@ -26,59 +26,41 @@
 ///
 //////////////////////////////////////////////////////////////////////////
 
-import { Observable, forkJoin } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnDestroy, HostBinding, ViewEncapsulation } from '@angular/core';
+import { Subscription } from 'rxjs'; 
+import { LoadingService } from '../services/loading.service';
 
-import { APIConstants } from '../models/framework.constants';
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from "@angular/core";
-import { Router } from '@angular/router';
-import { ApplicationRoutes } from '../framework.routing';
-
-/**
- * This class generates the application service and allows it to load
- * @param applicationService
- */
-export function applicationServiceFactory(applicationService: ApplicationService)
+@Component({
+    changeDetection: ChangeDetectionStrategy.OnPush,
+    selector: 'int-progress',
+    styleUrls: ['progress.component.scss'],
+    encapsulation: ViewEncapsulation.None,
+    templateUrl: 'progress.component.html'
+})
+export class ProgressComponent implements OnDestroy
 {
-    return () => applicationService.loadConfig().toPromise();
-}
+    @HostBinding('class.show')
+    public loading: boolean;
 
+    private readonly subscriptions: Array<Subscription>;
 
-/**
- * Base service loads main settings config
- */
-@Injectable()
-export class ApplicationService
-{
-    private _settings: any;
-
-    constructor(private http: HttpClient, private router: Router)
+    constructor(
+        public readonly loadingService: LoadingService,
+        private readonly changeDetectorRef: ChangeDetectorRef)
     {
+        this.subscriptions = [];
+        this.loading = false;
 
+        this.subscriptions.push(this.loadingService.loadingChangedEvent.subscribe((value) =>
+        {
+            this.loading = value > 0;
+            this.changeDetectorRef.detectChanges();
+        }));
     }
 
-    public get settings()
+    public ngOnDestroy(): void
     {
-        return this._settings;
+        this.subscriptions.forEach(item => item.unsubscribe());
     }
 
-    public loadConfig(): Observable<any>
-    {
-        return this.http
-            .get(APIConstants.SettingsUrl)
-            .pipe(
-                tap((settings) =>
-                {
-                    this._settings = settings;
-
-                    //ApplicationRoutes.initialise();
-                }),
-                catchError(err =>
-                {
-                    console.log('ERROR getting config data', err);
-                    throw (err || 'Server error while getting environment');
-                })
-            )
-    }
 }

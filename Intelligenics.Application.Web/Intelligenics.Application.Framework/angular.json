@@ -8,6 +8,9 @@
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
+        },
+        "@schematics/angular:application": {
+          "strict": true
         }
       },
       "root": "projects/test-harness",
@@ -22,7 +25,7 @@
             "main": "projects/test-harness/src/main.ts",
             "polyfills": "projects/test-harness/src/polyfills.ts",
             "tsConfig": "projects/test-harness/tsconfig.app.json",
-            "aot": false,
+            "inlineStyleLanguage": "scss",
             "assets": [
               "projects/test-harness/src/favicon.ico",
               "projects/test-harness/src/assets",
@@ -53,28 +56,14 @@
             "stylePreprocessorOptions": {
               "includePaths": [
                 "node_modules/@intelligenics/application-styles/css",
-                "node_modules/bootstrap/scss/bootstrap.scss"
+                "node_modules/bootstrap/scss/bootstrap.scss",
+                "projects/test-harness/src/css/"
               ]
             },
             "scripts": []
           },
           "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "projects/test-harness/src/environments/environment.ts",
-                  "with": "projects/test-harness/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "aot": true,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "buildOptimizer": true,
+            "production": { 
               "budgets": [
                 {
                   "type": "initial",
@@ -86,9 +75,25 @@
                   "maximumWarning": "6kb",
                   "maximumError": "10kb"
                 }
-              ]
+              ],
+              "fileReplacements": [
+                {
+                  "replace": "projects/test-harness/src/environments/environment.ts",
+                  "with": "projects/test-harness/src/environments/environment.prod.ts"
+                }
+              ],
+              "outputHashing": "all"
+            },
+            "development": {
+              "buildOptimizer": false,
+              "optimization": false,
+              "vendorChunk": true,
+              "extractLicenses": false,
+              "sourceMap": true,
+              "namedChunks": true
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
@@ -99,8 +104,12 @@
           "configurations": {
             "production": {
               "browserTarget": "test-harness:build:production"
+            },
+            "development": {
+              "browserTarget": "test-harness:build:development"
             }
-          }
+          },
+          "defaultConfiguration": "development"
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
@@ -115,6 +124,7 @@
             "polyfills": "projects/test-harness/src/polyfills.ts",
             "tsConfig": "projects/test-harness/tsconfig.spec.json",
             "karmaConfig": "projects/test-harness/karma.conf.js",
+            "inlineStyleLanguage": "scss",
             "assets": [
               "projects/test-harness/src/favicon.ico",
               "projects/test-harness/src/assets"
@@ -125,35 +135,12 @@
             "stylePreprocessorOptions": {
               "includePaths": [
                 "node_modules/@intelligenics/application-styles/css",
-                "node_modules/bootstrap/scss/bootstrap.scss"
+                "node_modules/bootstrap/scss/bootstrap.scss",
+                "projects/test-harness/src/css/"
+                
               ]
             },
             "scripts": []
-          }
-        },
-        "lint": {
-          "builder": "@angular-devkit/build-angular:tslint",
-          "options": {
-            "tsConfig": [
-              "projects/test-harness/tsconfig.app.json",
-              "projects/test-harness/tsconfig.spec.json",
-              "projects/test-harness/e2e/tsconfig.json"
-            ],
-            "exclude": [
-              "**/node_modules/**"
-            ]
-          }
-        },
-        "e2e": {
-          "builder": "@angular-devkit/build-angular:protractor",
-          "options": {
-            "protractorConfig": "projects/module/e2e/protractor.conf.js",
-            "devServerTarget": "test-harness:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "test-harness:serve:production"
-            }
           }
         }
       }
@@ -180,7 +167,7 @@
           }
         },
         "build": {
-          "builder": "@angular-devkit/build-ng-packagr:build",
+          "builder": "@angular-devkit/build-angular:ng-packagr",
           "options": {
             "tsConfig": "projects/module/tsconfig.lib.json",
             "project": "projects/module/ng-package.json"
@@ -188,8 +175,12 @@
           "configurations": {
             "production": {
               "tsConfig": "projects/module/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/module/tsconfig.lib.json"
             }
-          }
+          },
+          "defaultConfiguration": "production"
         },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",

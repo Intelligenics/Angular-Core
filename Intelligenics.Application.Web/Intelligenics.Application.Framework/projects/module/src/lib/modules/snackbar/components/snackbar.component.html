@@ -1,0 +1,26 @@
+<div class="int-snackbar__container" [@slideInOut]="state">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-3 d-none d-xl-block"></div>
+      <div class="col-xl-6 col-12">
+        <div class="int-snackbar-alert">
+          <div class="row align-items-center">
+            <div class="col-3 col-sm-3 col-xl-2">
+              <div class="int-snackbar-alert__icon">
+                <i *ngIf="messageType == MESSAGETYPE.Warning" class="fas fa-exclamation-triangle"></i>
+                <i *ngIf="messageType == MESSAGETYPE.Info" class="fas fa-info-circle"></i>
+                <i *ngIf="messageType == MESSAGETYPE.Error" class="fas fa-exclamation-circle"></i>
+                <i *ngIf="messageType == MESSAGETYPE.Question" class="fas fa-question-circle"></i>
+              </div>
+            </div>
+            <div class="col-9 col-xl-10">
+              <div class="int-snackbar-alert__message">
+                {{message}}
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

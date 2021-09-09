@@ -180,10 +180,6 @@ Once you have the framework referenced in the main module you will see the place
 
 ```HTML
 <int-app-progress></int-app-progress>
-<router-outlet name="topsidebar"></router-outlet>
-<router-outlet name="leftsidebar"></router-outlet>
-<router-outlet name="bottomsidebar"></router-outlet>
-<router-outlet name="rightsidebar"></router-outlet>
 <router-outlet name="dialog"></router-outlet>
 <router-outlet name="framework"></router-outlet>
 <router-outlet name="security"></router-outlet>

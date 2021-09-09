@@ -26,7 +26,7 @@
 ///
 //////////////////////////////////////////////////////////////////////////
 
-import { AuthenticationInfo, IAuthenticationSettings } from "../models/authentication.model";
+import { AuthenticationInfo } from "../models/authentication.model";
 
 import { ApplicationService } from './application.service';
 import { Injectable } from "@angular/core";
@@ -36,7 +36,7 @@ import { Injectable } from "@angular/core";
  * about the current user. It also handles various login, logout
  * behaviours for the site.
  */
-@Injectable()
+@Injectable({providedIn:"root"})
 export class AuthenticationService
 { 
 
@@ -102,3 +102,5 @@ export class AuthenticationService
         return null;
     }
 }
+
+

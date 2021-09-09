@@ -1,0 +1,17 @@
+
+
+$sidebar-background: var(--int-app-sidebar-background, lighten(black,90%)); 
+$sidebar-shadow : var(--int-app-sidebar-shadow); 
+
+.int-leftsidebar
+{ 
+    z-index: 800;
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    left: -250px;
+    bottom: 0;
+    background-color: $sidebar-background;
+    box-shadow: $sidebar-shadow;
+    width:500px; 
+}

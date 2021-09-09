@@ -1,0 +1,91 @@
+<div class="row align-items-center">
+  <div class="col-2 int-app-alert__indicator">
+    <i *ngIf="messageType == MessageType.Warning" class="fas fa-exclamation-triangle"></i>
+    <i *ngIf="messageType == MessageType.Info" class="fas fa-info-circle"></i>
+    <i *ngIf="messageType == MessageType.Error" class="fas fa-exclamation-circle"></i>
+    <i *ngIf="messageType == MessageType.Question" class="fas fa-question-circle"></i>
+  </div>
+  <div class="col">
+    {{message}}
+  </div>
+</div>
+<div class="row">
+  <div class="col text-right">
+    <div class="int-app-alert__buttons">
+      <ng-container [ngSwitch]="AlertOptions">
+        <ng-container *ngSwitchCase="AlertOptions.OKCancel">
+          <button (click)="onButtonClicked(AlertOptions.Cancel)" type="button" class="btn btn-light">
+            Cancel
+          </button>
+          <button (click)="onButtonClicked(AlertOptions.OK)" type="button" class="btn btn-light">
+            OK
+          </button>
+        </ng-container>
+        <ng-container *ngSwitchCase="AlertOptions.YesNo">
+          <button (click)="onButtonClicked(AlertOptions.No)" type="button" class="btn btn-light">
+            No
+          </button>
+          <button (click)="onButtonClicked(AlertOptions.Yes)" type="button" class="btn btn-light">
+            Yes
+          </button>
+        </ng-container>
+        <ng-container *ngSwitchCase="AlertOptions.SaveCancel">
+          <button (click)="onButtonClicked(AlertOptions.Cancel)" type="button" class="btn btn-light">
+            Cancel
+          </button>
+          <button (click)="onButtonClicked(AlertOptions.Save)" type="button" class="btn btn-light">
+            Save
+          </button>
+        </ng-container>
+        <ng-container *ngSwitchCase="AlertOptions.ConfirmCancel">
+          <button (click)="onButtonClicked(AlertOptions.Cancel)" type="button" class="btn btn-light">
+            Cancel
+          </button>
+          <button (click)="onButtonClicked(AlertOptions.Confirm)" type="button" class="btn btn-light">
+            Confirm
+          </button>
+        </ng-container>
+        <ng-container *ngSwitchCase="AlertOptions.OK">
+          <button (click)="onButtonClicked(AlertOptions.OK)" type="button" class="btn btn-light">
+            OK
+          </button>
+        </ng-container>
+        <ng-container *ngSwitchCase="AlertOptions.Confirm">
+          <button (click)="onButtonClicked(AlertOptions.Confirm)" type="button" class="btn btn-light">
+            OK
+          </button>
+        </ng-container>
+        <ng-container *ngSwitchCase="AlertOptions.Save">
+          <button (click)="onButtonClicked(AlertOptions.Save)" type="button" class="btn btn-light">
+            OK
+          </button>
+        </ng-container>
+        <ng-container *ngSwitchCase="AlertOptions.Close">
+          <button (click)="onButtonClicked(AlertOptions.Close)" type="button" class="btn btn-light">
+            Close
+          </button>
+        </ng-container>
+        <ng-container *ngSwitchCase="AlertOptions.Cancel">
+          <button (click)="onButtonClicked(AlertOptions.Cancel)" type="button" class="btn btn-light">
+            Cancel
+          </button>
+        </ng-container>
+        <ng-container *ngSwitchCase="AlertOptions.Yes">
+          <button (click)="onButtonClicked(AlertOptions.Yes)" type="button" class="btn btn-light">
+            Yes
+          </button>
+        </ng-container>
+        <ng-container *ngSwitchCase="AlertOptions.No">
+          <button (click)="onButtonClicked(AlertOptions.No)" type="button" class="btn btn-light">
+            No
+          </button>
+        </ng-container>
+        <ng-container *ngSwitchDefault>
+          <button (click)="onButtonClicked(AlertOptions.OK)" type="button" class="btn btn-light">
+            OK
+          </button>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div>
+</div>

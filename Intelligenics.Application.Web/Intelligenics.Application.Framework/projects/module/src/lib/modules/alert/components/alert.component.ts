@@ -26,59 +26,49 @@
 ///
 //////////////////////////////////////////////////////////////////////////
 
-import { Observable, forkJoin } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { Component, EventEmitter, HostListener, Input, Output, ViewEncapsulation } from "@angular/core";
+import { AlertOptions, MessageType } from "../models/alert.model";
 
-import { APIConstants } from '../models/framework.constants';
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from "@angular/core";
-import { Router } from '@angular/router';
-import { ApplicationRoutes } from '../framework.routing';
+/** Dialog box component. */
+@Component({
+    selector: "int-alert",
+    templateUrl: "alert.component.html",
+    encapsulation: ViewEncapsulation.None,
+    styleUrls: ['alert.component.scss']
+})
+export class AlertComponent
+{ 
 
-/**
- * This class generates the application service and allows it to load
- * @param applicationService
- */
-export function applicationServiceFactory(applicationService: ApplicationService)
-{
-    return () => applicationService.loadConfig().toPromise();
-}
+    @Input()
+    public message: string;
+
+    @Input()
+    public messageType: MessageType;
+
+    @Output()
+    public optionSelected: EventEmitter<AlertOptions>;
 
 
-/**
- * Base service loads main settings config
- */
-@Injectable()
-export class ApplicationService
-{
-    private _settings: any;
+    // /** Dialog options. */
 
-    constructor(private http: HttpClient, private router: Router)
+    /** Constants */
+    public AlertOptions: any = AlertOptions;
+    public MessageType: any = MessageType;
+
+    constructor( )
     {
-
+        this.optionSelected = new EventEmitter<AlertOptions>(); 
     }
 
-    public get settings()
+    /** OK button clicked. */
+    public onButtonClicked(option: AlertOptions): void
     {
-        return this._settings;
+        this.optionSelected.emit(option);
     }
 
-    public loadConfig(): Observable<any>
+    @HostListener('document:keydown.escape', ['$event'])
+    public onEscapePressed(event: KeyboardEvent) 
     {
-        return this.http
-            .get(APIConstants.SettingsUrl)
-            .pipe(
-                tap((settings) =>
-                {
-                    this._settings = settings;
-
-                    //ApplicationRoutes.initialise();
-                }),
-                catchError(err =>
-                {
-                    console.log('ERROR getting config data', err);
-                    throw (err || 'Server error while getting environment');
-                })
-            )
+        this.optionSelected.emit(AlertOptions.Cancel);
     }
 }
