@@ -84,9 +84,13 @@ export class AuthenticationService
         return info;
     }
 
-    public navigateToSignIn(): void
+    public navigateToSignIn(): boolean
     {
+        if (document.location.href == this.applicationService.settings.authentication.authenticationUrl)
+            return true;            
+
         document.location.href = this.applicationService.settings.authentication.authenticationUrl;
+        return false;
     }
 
     private readCookie(name: string)

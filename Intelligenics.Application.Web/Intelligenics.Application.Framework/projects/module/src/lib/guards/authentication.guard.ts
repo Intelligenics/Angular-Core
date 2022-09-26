@@ -59,9 +59,7 @@ export class AuthenticationGuard implements CanActivate, CanActivateChild, CanLo
         if ( this.authenticationService.isEnabled && this.authenticationService.isSignedIn )
             return true;
 
-        this.authenticationService.navigateToSignIn();
-
-        return false;
+        return this.authenticationService.navigateToSignIn();
     }
 
     /**
@@ -77,9 +75,7 @@ export class AuthenticationGuard implements CanActivate, CanActivateChild, CanLo
         if ( this.authenticationService.isEnabled && this.authenticationService.isSignedIn )
             return true;
 
-        this.authenticationService.navigateToSignIn();
-
-        return false;
+        return this.authenticationService.navigateToSignIn();
     }
 
     /**
@@ -95,8 +91,6 @@ export class AuthenticationGuard implements CanActivate, CanActivateChild, CanLo
         if ( this.authenticationService.isEnabled && this.authenticationService.isSignedIn )
             return true;
 
-        this.authenticationService.navigateToSignIn();
-
-        return false;
+        return this.authenticationService.navigateToSignIn();
     }
 }
